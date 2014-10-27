@@ -1,1 +1,0 @@
-/Users/gypsydave5/Dropbox/Settings/Vim/after.vimrc
