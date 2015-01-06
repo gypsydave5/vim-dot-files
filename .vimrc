@@ -247,17 +247,18 @@ endif
 " _. JS {{{
 if count(g:vimified_packages, 'js')
 	Bundle 'kchmck/vim-coffee-script'
-	au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-
 	Bundle 'alfredodeza/jacinto.vim'
 	au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-	au BufNewFile,BufReadPost *.coffee setl tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+
+	au BufNewFile,BufReadPost *.js setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 endif
 " }}}
 
 " _. Clojure {{{
 if count(g:vimified_packages, 'clojure')
 	Bundle 'guns/vim-clojure-static'
+  Bundle 'tpope/vim-leiningen'
 	Bundle 'tpope/vim-fireplace'
 	Bundle 'tpope/vim-classpath'
 endif
@@ -329,10 +330,10 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " You want to be part of the gurus? Time to get in serious stuff and stop using
 " arrow keys.
-noremap <left> <nop>
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <right> <nop>
+"noremap <left> <nop>
+"noremap <up> <nop>
+"noremap <down> <nop>
+"noremap <right> <nop>
 
 " Yank from current cursor position to end of line
 map Y y$

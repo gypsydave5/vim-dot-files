@@ -178,3 +178,13 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>l :bnext<CR>
 " }}}
+"
+let g:EditorConfig_core_mode = 'external_command'
+
+autocmd FileType ruby nmap <buffer> <F4> <Plug>(xmpfilter-mark)
+autocmd FileType ruby xmap <buffer> <F4> <Plug>(xmpfilter-mark)
+autocmd FileType ruby imap <buffer> <F4> <Plug>(xmpfilter-mark)
+
+autocmd FileType ruby nmap <buffer> <F5> <Plug>(xmpfilter-run)
+autocmd FileType ruby xmap <buffer> <F5> <Plug>(xmpfilter-run)
+autocmd FileType ruby imap <buffer> <F5> <Plug>(xmpfilter-run)
