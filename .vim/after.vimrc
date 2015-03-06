@@ -175,8 +175,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " {{{ some fun from Spike
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-nnoremap <leader>h :bprevious<CR>
-nnoremap <leader>l :bnext<CR>
 " }}}
 "
 let g:EditorConfig_core_mode = 'external_command'
@@ -188,3 +186,22 @@ autocmd FileType ruby imap <buffer> <F4> <Plug>(xmpfilter-mark)
 autocmd FileType ruby nmap <buffer> <F5> <Plug>(xmpfilter-run)
 autocmd FileType ruby xmap <buffer> <F5> <Plug>(xmpfilter-run)
 autocmd FileType ruby imap <buffer> <F5> <Plug>(xmpfilter-run)
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+"nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+"
+"
+" NERDTreeToggle
+nmap <C-i> :NERDTreeToggle<CR>

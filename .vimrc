@@ -1,9 +1,3 @@
-" vimrc
-" Author: Zaiste! <oh@zaiste.net>
-" Source: https://github.com/zaiste/vimified
-"
-" Have fun!
-"
 "
 set nocompatible
 filetype on
@@ -73,9 +67,9 @@ if count(g:vimified_packages, 'general')
 	call yankstack#setup()
 	Bundle 'tpope/vim-eunuch'
 	Bundle 'tpope/vim-surround'
+  Plugin 'elzr/vim-json'
 
 	Bundle 'scrooloose/nerdtree'
-	nmap <C-i> :NERDTreeToggle<CR>
 	" Disable the scrollbars (NERDTree)
 	set guioptions-=r
 	set guioptions-=L
@@ -102,7 +96,8 @@ if count(g:vimified_packages, 'general')
 	Bundle 'troydm/easybuffer.vim'
 	nmap <leader>be :EasyBufferToggle<enter>
 
-	Bundle 'terryma/vim-multiple-cursors'
+  Plugin 't9md/vim-ruby-xmpfilter'
+  Plugin 'tpope/vim-cucumber'
 endif
 " }}}
 
@@ -111,11 +106,28 @@ if count(g:vimified_packages, 'fancy')
 	"call g:Check_defined('g:airline_left_sep', '')
 	"call g:Check_defined('g:airline_right_sep', '')
 	"call g:Check_defined('g:airline_branch_prefix', '')
-
+  Plugin 'roman/golden-ratio'
+  Plugin 'edkolev/promptline.vim'
 	Bundle 'bling/vim-airline'
 endif
 " }}}
 
+" _. Java {{{
+if count(g:vimified_packages, 'java')
+  Plugin 'tfnico/vim-gradle'
+  Plugin 'vim-scripts/groovy.vim'
+endif
+" }}}
+"
+" _. Snippets {{{
+if count(g:vimified_packages, 'java')
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'SirVer/ultisnips'
+  Plugin 'Trevoke/ultisnips-rspec'
+  Plugin 'honza/vim-snippets'
+endif
+" }}}
+"
 " _. Indent {{{
 if count(g:vimified_packages, 'indent')
 	Bundle 'Yggdroot/indentLine'
@@ -180,8 +192,6 @@ if count(g:vimified_packages, 'coding')
 endif
 " }}}
 
-
-
 " _. Python {{{
 if count(g:vimified_packages, 'python')
 	Bundle 'klen/python-mode'
@@ -205,6 +215,7 @@ if count(g:vimified_packages, 'ruby')
 	Bundle 'tpope/vim-rails'
 	Bundle 'nelstrom/vim-textobj-rubyblock'
 	Bundle 'ecomba/vim-ruby-refactoring'
+  Plugin 'thoughtbot/vim-rspec'
 
 	autocmd FileType ruby,eruby,yaml set tw=80 ai sw=2 sts=2 et
 	autocmd FileType ruby,eruby,yaml setlocal foldmethod=manual
@@ -250,7 +261,6 @@ if count(g:vimified_packages, 'js')
 	Bundle 'alfredodeza/jacinto.vim'
 	au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 	au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-
 	au BufNewFile,BufReadPost *.js setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 endif
 " }}}
@@ -261,6 +271,13 @@ if count(g:vimified_packages, 'clojure')
   Bundle 'tpope/vim-leiningen'
 	Bundle 'tpope/vim-fireplace'
 	Bundle 'tpope/vim-classpath'
+endif
+" }}}
+
+" _. Presentation {{{
+if count(g:vimified_packages, 'presentation')
+    Plugin 'vim-scripts/SyntaxRange'
+    Plugin 'tybenz/vimdeck'
 endif
 " }}}
 
@@ -287,11 +304,7 @@ if count(g:vimified_packages, 'color')
 	Bundle 'sjl/badwolf'
 	Bundle 'altercation/vim-colors-solarized'
 	Bundle 'tomasr/molokai'
-	Bundle 'zaiste/Atom'
 	Bundle 'w0ng/vim-hybrid'
-	Bundle 'chriskempson/base16-vim'
-	Bundle 'Elive/vim-colorscheme-elive'
-	Bundle 'zeis/vim-kolor'
 
 	" During installation the molokai colorscheme might not be avalable
 	if filereadable(globpath(&rtp, 'colors/molokai.vim'))
