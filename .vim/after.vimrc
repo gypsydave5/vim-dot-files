@@ -130,7 +130,7 @@ let g:promptline_preset = {
 "let g:ycm_key_list_select_completion=[]
 "let g:ycm_key_list_previous_completion=[]
 
-""let g:UltiSnipsExpandTrigger="<c-j>"
+"let g:UltiSnipsExpandTrigger="<c-j>"
 
 "function! g:UltiSnips_Complete()
     "call UltiSnips#ExpandSnippet()
@@ -201,7 +201,7 @@ endif
 
 " bind K to grep word under cursor
 "nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-"
-"
+
 " NERDTreeToggle
-nmap <C-i> :NERDTreeToggle<CR>
+"nmap <C-i> :NERDTreeToggle<CR>
+map <C-i> :NERDTreeToggle<CR>
