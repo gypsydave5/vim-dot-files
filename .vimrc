@@ -24,8 +24,6 @@ endif
 " }}}
 
 " PACKAGE LIST {{{
-" Use this variable inside your local configuration to declare
-" which package you would like to include
 if ! exists('g:vimified_packages')
 	let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color']
 endif
@@ -35,7 +33,6 @@ endif
 let s:bundle_path=$HOME."/.vim/bundle/"
 execute "set rtp+=".s:bundle_path."vundle/"
 call vundle#rc()
-
 Plugin 'gmarik/vundle'
 " }}}
 
@@ -64,12 +61,12 @@ if count(g:vimified_packages, 'general')
 	Plugin 'tpope/vim-speeddating'
 	Plugin 'tpope/vim-unimpaired'
 	Plugin 'maxbrunsfeld/vim-yankstack'
-	call yankstack#setup()
+  call yankstack#setup()
 	Plugin 'tpope/vim-eunuch'
 	Plugin 'tpope/vim-surround'
   Plugin 'elzr/vim-json'
-
-	Plugin 'scrooloose/nerdtree'
+  Plugin 'tpope/vim-sleuth'
+  Plugin 'scrooloose/nerdtree'
 	" Disable the scrollbars (NERDTree)
 	set guioptions-=r
 	set guioptions-=L
@@ -120,11 +117,11 @@ endif
 " }}}
 "
 " _. Snippets {{{
-if count(g:vimified_packages, 'java')
+if count(g:vimified_packages, 'snippets')
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'SirVer/ultisnips'
   Plugin 'Trevoke/ultisnips-rspec'
-  Plugin 'honza/vim-snippets'
+  Plugin 'gypsydave5/vim-snippets'
 endif
 " }}}
 "
@@ -135,7 +132,7 @@ if count(g:vimified_packages, 'indent')
 	let g:indentLine_color_term = 111
 	let g:indentLine_color_gui = '#DADADA'
 	let g:indentLine_char = 'c'
-	"let g:indentLine_char = '∙▹¦'
+  let g:indentLine_char = '∙▹¦'
 	let g:indentLine_char = '∙'
 endif
 " }}}
@@ -333,6 +330,7 @@ syntax on
 " Set 5 lines to the cursor - when moving vertically
 set scrolloff=0
 
+
 " It defines where to look for the buffer user demanding (current window, all
 " windows in other tabs, or nowhere, i.e. open file from scratch every time) and
 " how to open the buffer (in the new split, tab, or in the current window).
@@ -347,25 +345,11 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Mappings {{{
 
-" You want to be part of the gurus? Time to get in serious stuff and stop using
-" arrow keys.
-"noremap <left> <nop>
-"noremap <up> <nop>
-"noremap <down> <nop>
-"noremap <right> <nop>
-
 " Yank from current cursor position to end of line
 map Y y$
-" Yank content in OS's clipboard. `o` stands for "OS's Clipoard".
-vnoremap <leader>yo "*y
-" Paste content from OS's clipboard
-nnoremap <leader>po "*p
 
 " clear highlight after search
 noremap <silent><Leader>/ :nohls<CR>
-
-" better ESC
-inoremap <C-k> <Esc>
 
 nmap <silent> <leader>hh :set invhlsearch<CR>
 nmap <silent> <leader>ll :set invlist<CR>
@@ -373,8 +357,11 @@ nmap <silent> <leader>nn :set invnumber<CR>
 nmap <silent> <leader>pp :set invpaste<CR>
 nmap <silent> <leader>ii :set invrelativenumber<CR>
 
-" Seriously, guys. It's not like :W is bound to anything anyway.
+" I suck at typing - and I can never get my finger off shift...
 command! W :w
+command! Wq :wq
+command! WQ :wq
+command! WQa :wqa
 
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
@@ -389,12 +376,12 @@ nnoremap <leader>L ^vg_y:execute @@<cr>
 " buffer
 nmap <leader>wq :w!<cr>:Bclose<cr>
 
+nmap <Tab> <C-W>w
+
 " }}}
 
 " . abbrevs {{{
 "
-iabbrev z@ oh@zaiste.net
-
 " . }}}
 
 " Settings {{{
@@ -424,12 +411,10 @@ set ttimeout
 set ttimeoutlen=10
 
 " _ backups {{{
-if has('persistent_undo')
-	set undodir=~/.vim/tmp/undo//     " undo files
-	set undofile
-	set undolevels=3000
-	set undoreload=10000
-endif
+set undodir=~/.vim/tmp/undo//     " undo files
+set undofile
+set undolevels=3000
+set undoreload=10000
 set backupdir=~/.vim/tmp/backup// " backups
 set directory=~/.vim/tmp/swap//   " swap files
 set backup
@@ -438,10 +423,10 @@ set noswapfile
 
 set modelines=0
 set noeol
-if exists('+relativenumber')
-	set relativenumber
-	set number
-endif
+
+set norelativenumber
+set number
+
 set numberwidth=3
 set winwidth=83
 set ruler
@@ -482,11 +467,10 @@ set dictionary=/usr/share/dict/words
 " Triggers {{{
 
 " Save when losing focus
-au FocusLost    * :silent! wall
+au FocusLost    * :silent! wa
 "
 " When vimrc is edited, reload it
 autocmd! BufWritePost vimrc source ~/.vimrc
-
 " }}}
 
 " Cursorline {{{

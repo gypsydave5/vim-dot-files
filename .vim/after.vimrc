@@ -99,8 +99,8 @@ endif
 let g:promptline_preset = {
         \'a' : [ promptline#slices#cwd() ],
         \'b' : [ promptline#slices#vcs_branch() ],
-				\'c' : [ promptline#slices#git_status()],
-				\'x' : [ promptline#slices#jobs() ],
+        \'c' : [ promptline#slices#git_status()],
+        \'x' : [ promptline#slices#jobs() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
 "}}}
 
@@ -114,7 +114,7 @@ let g:promptline_preset = {
 
 "NERDTree remap {{{
 
-	"let g:NERDTreeToggle <S-Tab>
+map <C-i> :NERDTreeToggle<CR>
 
 " }}}
 
@@ -127,10 +127,8 @@ let g:promptline_preset = {
 
 "UltiSnips Triggers {{{
 "
-"let g:ycm_key_list_select_completion=[]
-"let g:ycm_key_list_previous_completion=[]
-
-"let g:UltiSnipsExpandTrigger="<c-j>"
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
 
 "function! g:UltiSnips_Complete()
     "call UltiSnips#ExpandSnippet()
@@ -142,7 +140,7 @@ let g:promptline_preset = {
             "if g:ulti_jump_forwards_res == 0
                "return "\<TAB>"
             "endif
-        "endif
+       "endif
     "endif
     "return ""
 "endfunction
@@ -154,11 +152,13 @@ let g:promptline_preset = {
 " and close the selection list, same as other IDEs.
 " CONFLICT with some plugins like tpope/Endwise
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
+"
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+
+
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -167,7 +167,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " }}}
 
-" {{{ html tags
+"html tags {{{
 
 :let g:html_indent_inctags = "html,body,head,tbody,section"
 
@@ -177,7 +177,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " }}}
 "
-let g:EditorConfig_core_mode = 'external_command'
+"let g:EditorConfig_core_mode = 'external_command'
 
 autocmd FileType ruby nmap <buffer> <F4> <Plug>(xmpfilter-mark)
 autocmd FileType ruby xmap <buffer> <F4> <Plug>(xmpfilter-mark)
@@ -203,5 +203,4 @@ endif
 "nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " NERDTreeToggle
-"nmap <C-i> :NERDTreeToggle<CR>
-map <C-i> :NERDTreeToggle<CR>
+"nnoremap <Tab> <C-W>w
