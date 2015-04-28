@@ -9,7 +9,7 @@ source ~/.vim/functions/util.vim
 
 " Load external configuration before anything else {{{
 if filereadable(expand("~/.vim/before.vimrc"))
-	source ~/.vim/before.vimrc
+  source ~/.vim/before.vimrc
 endif
 " }}}
 
@@ -19,13 +19,13 @@ let maplocalleader = "\\"
 " Local vimrc configuration {{{
 let s:localrc = expand($HOME . '/.vim/local.vimrc')
 if filereadable(s:localrc)
-	exec ':so ' . s:localrc
+  exec ':so ' . s:localrc
 endif
 " }}}
 
 " PACKAGE LIST {{{
 if ! exists('g:vimified_packages')
-	let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color']
+  let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color']
 endif
 " }}}
 
@@ -41,57 +41,57 @@ Plugin 'gmarik/vundle'
 " Install user-supplied Plugins {{{
 let s:extrarc = expand($HOME . '/.vim/extra.vimrc')
 if filereadable(s:extrarc)
-	exec ':so ' . s:extrarc
+  exec ':so ' . s:extrarc
 endif
 " }}}
 
 " _. General {{{
 if count(g:vimified_packages, 'general')
-	Plugin 'editorconfig/editorconfig-vim'
+  Plugin 'editorconfig/editorconfig-vim'
 
-	Plugin 'rking/ag.vim'
-	nnoremap <leader>a :Ag -i<space>
+  Plugin 'rking/ag.vim'
+  nnoremap <leader>a :Ag -i<space>
 
-	Plugin 'matthias-guenther/hammer.vim'
-	nmap <leader>p :Hammer<cr>
+  Plugin 'matthias-guenther/hammer.vim'
+  nmap <leader>p :Hammer<cr>
 
-	Plugin 'tsaleh/vim-align'
-	Plugin 'tpope/vim-endwise'
-	Plugin 'tpope/vim-repeat'
-	Plugin 'tpope/vim-speeddating'
-	Plugin 'tpope/vim-unimpaired'
-	Plugin 'maxbrunsfeld/vim-yankstack'
+  Plugin 'tsaleh/vim-align'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'tpope/vim-repeat'
+  Plugin 'tpope/vim-speeddating'
+  Plugin 'tpope/vim-unimpaired'
+  Plugin 'maxbrunsfeld/vim-yankstack'
   call yankstack#setup()
-	Plugin 'tpope/vim-eunuch'
-	Plugin 'tpope/vim-surround'
+  Plugin 'tpope/vim-eunuch'
+  Plugin 'tpope/vim-surround'
   Plugin 'elzr/vim-json'
   Plugin 'tpope/vim-sleuth'
   Plugin 'scrooloose/nerdtree'
-	" Disable the scrollbars (NERDTree)
-	set guioptions-=r
-	set guioptions-=L
-	" Keep NERDTree window fixed between multiple toggles
-	set winfixwidth
+  " Disable the scrollbars (NERDTree)
+  set guioptions-=r
+  set guioptions-=L
+  " Keep NERDTree window fixed between multiple toggles
+  set winfixwidth
 
 
-	Plugin 'kana/vim-textobj-user'
-	Plugin 'vim-scripts/YankRing.vim'
-	let g:yankring_replace_n_pkey = '<leader>['
-	let g:yankring_replace_n_nkey = '<leader>]'
-	let g:yankring_history_dir = '~/.vim/tmp/'
-	nmap <leader>y :YRShow<cr>
+  Plugin 'kana/vim-textobj-user'
+  Plugin 'vim-scripts/YankRing.vim'
+  let g:yankring_replace_n_pkey = '<leader>['
+  let g:yankring_replace_n_nkey = '<leader>]'
+  let g:yankring_history_dir = '~/.vim/tmp/'
+  nmap <leader>y :YRShow<cr>
 
-	Plugin 'michaeljsmith/vim-indent-object'
-	let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
+  Plugin 'michaeljsmith/vim-indent-object'
+  let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
 
-	Plugin 'Spaceghost/vim-matchit'
-	Plugin 'kien/ctrlp.vim'
-	let g:ctrlp_working_path_mode = ''
+  Plugin 'Spaceghost/vim-matchit'
+  Plugin 'kien/ctrlp.vim'
+  let g:ctrlp_working_path_mode = ''
 
-	Plugin 'vim-scripts/scratch.vim'
+  Plugin 'vim-scripts/scratch.vim'
 
-	Plugin 'troydm/easybuffer.vim'
-	nmap <leader>be :EasyBufferToggle<enter>
+  Plugin 'troydm/easybuffer.vim'
+  nmap <leader>be :EasyBufferToggle<enter>
 
   Plugin 't9md/vim-ruby-xmpfilter'
   Plugin 'tpope/vim-cucumber'
@@ -100,12 +100,12 @@ endif
 
 " _. Fancy {{{
 if count(g:vimified_packages, 'fancy')
-	"call g:Check_defined('g:airline_left_sep', '')
-	"call g:Check_defined('g:airline_right_sep', '')
-	"call g:Check_defined('g:airline_branch_prefix', '')
+  "call g:Check_defined('g:airline_left_sep', '')
+  "call g:Check_defined('g:airline_right_sep', '')
+  "call g:Check_defined('g:airline_branch_prefix', '')
   Plugin 'roman/golden-ratio'
   Plugin 'edkolev/promptline.vim'
-	Plugin 'bling/vim-airline'
+  Plugin 'bling/vim-airline'
 endif
 " }}}
 
@@ -127,62 +127,61 @@ endif
 "
 " _. Indent {{{
 if count(g:vimified_packages, 'indent')
-	Plugin 'Yggdroot/indentLine'
-	set list lcs=tab:\|\
-	let g:indentLine_color_term = 111
-	let g:indentLine_color_gui = '#DADADA'
-	let g:indentLine_char = 'c'
+  Plugin 'Yggdroot/indentLine'
+  set list lcs=tab:\|\
+  let g:indentLine_color_term = 111
+  let g:indentLine_color_gui = '#DADADA'
+  let g:indentLine_char = 'c'
   let g:indentLine_char = '∙▹¦'
-	let g:indentLine_char = '∙'
+  let g:indentLine_char = '∙'
 endif
 " }}}
 
 " _. OS {{{
 if count(g:vimified_packages, 'os')
-	Plugin 'zaiste/tmux.vim'
-	Plugin 'benmills/vimux'
-	map <Leader>rp :VimuxPromptCommand<CR>
-	map <Leader>rl :VimuxRunLastCommand<CR>
-
-	map <LocalLeader>d :call VimuxRunCommand(@v, 0)<CR>
+  Plugin 'zaiste/tmux.vim'
+  Plugin 'benmills/vimux'
+  map <Leader>rp :VimuxPromptCommand<CR>
+  map <Leader>rl :VimuxRunLastCommand<CR>
+  map <LocalLeader>d :call VimuxRunCommand(@v, 0)<CR>
 endif
 " }}}
 
 " _. Coding {{{
 
 if count(g:vimified_packages, 'coding')
-	Plugin 'majutsushi/tagbar'
-	nmap <leader>t :TagbarToggle<CR>
+  Plugin 'majutsushi/tagbar'
+  nmap <leader>t :TagbarToggle<CR>
 
-	Plugin 'gregsexton/gitv'
+  Plugin 'gregsexton/gitv'
 
-	Plugin 'joonty/vdebug.git'
+  Plugin 'joonty/vdebug.git'
 
-	Plugin 'scrooloose/nerdcommenter'
-	nmap <leader># :call NERDComment(0, "invert")<cr>
-	vmap <leader># :call NERDComment(0, "invert")<cr>
+  Plugin 'scrooloose/nerdcommenter'
+  nmap <leader># :call NERDComment(0, "invert")<cr>
+  vmap <leader># :call NERDComment(0, "invert")<cr>
 
-	" - Plugin 'msanders/snipmate.vim'
-	Plugin 'sjl/splice.vim'
+  " - Plugin 'msanders/snipmate.vim'
+  Plugin 'sjl/splice.vim'
 
-	Plugin 'tpope/vim-fugitive'
-	nmap <leader>g :Ggrep
-	" ,f for global git serach for word under the cursor (with highlight)
-	nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
-	" same in visual mode
-	:vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
+  Plugin 'tpope/vim-fugitive'
+  nmap <leader>g :Ggrep
+  " ,f for global git serach for word under the cursor (with highlight)
+  nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
+  " same in visual mode
+  :vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
 
-	Plugin 'scrooloose/syntastic'
-	let g:syntastic_enable_signs=1
-	let g:syntastic_auto_loc_list=1
-	let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'python', ], 'passive_filetypes': ['html', 'css', 'slim'] }
+  Plugin 'scrooloose/syntastic'
+  let g:syntastic_enable_signs=1
+  let g:syntastic_auto_loc_list=1
+  let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'python', ], 'passive_filetypes': ['html', 'css', 'slim'] }
 
-	" --
+  " --
 
-	Plugin 'vim-scripts/Reindent'
+  Plugin 'vim-scripts/Reindent'
 
-	autocmd FileType gitcommit set tw=68 spell
-	autocmd FileType gitcommit setlocal foldmethod=manual
+  autocmd FileType gitcommit set tw=68 spell
+  autocmd FileType gitcommit setlocal foldmethod=manual
 
   Plugin 'rizzatti/dash.vim'
   :nmap <silent> <leader>d <Plug>DashSearch
@@ -192,132 +191,131 @@ endif
 
 " _. Python {{{
 if count(g:vimified_packages, 'python')
-    Plugin 'klen/python-mode'
-    Plugin 'python.vim'
-    Plugin 'python_match.vim'
-    Plugin 'pythoncomplete'
-    Plugin 'vim-virtualenv'
-
-
-
-
-
-
+  Plugin 'klen/python-mode'
+  Plugin 'python.vim'
+  Plugin 'python_match.vim'
+  Plugin 'pythoncomplete'
+  Plugin 'vim-virtualenv'
 endif
 " }}}
 
 " _. Go {{{
 if count(g:vimified_packages, 'go')
-	Plugin 'fatih/vim-go'
-	let g:go_disable_autoinstall = 1
+  Plugin 'fatih/vim-go'
+  let g:go_disable_autoinstall = 1
 endif
 " }}}
 
 " _. Ruby {{{
 if count(g:vimified_packages, 'ruby')
-	Plugin 'vim-ruby/vim-ruby'
-	Plugin 'tpope/vim-rails'
-	Plugin 'nelstrom/vim-textobj-rubyblock'
-	Plugin 'ecomba/vim-ruby-refactoring'
+  Plugin 'vim-ruby/vim-ruby'
+  Plugin 'tpope/vim-rails'
+  Plugin 'nelstrom/vim-textobj-rubyblock'
+  Plugin 'ecomba/vim-ruby-refactoring'
   Plugin 'thoughtbot/vim-rspec'
 
-	autocmd FileType ruby,eruby,yaml set tw=80 ai sw=2 sts=2 et
-	autocmd FileType ruby,eruby,yaml setlocal foldmethod=manual
-	autocmd User Rails set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType ruby,eruby,yaml set tw=80 ai sw=2 sts=2 et
+  autocmd FileType ruby,eruby,yaml setlocal foldmethod=manual
+  autocmd User Rails set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 endif
 " }}}
 
 " _. Clang {{{
 if count(g:vimified_packages, 'clang')
-	Plugin 'Rip-Rip/clang_complete'
-	Plugin 'LucHermitte/clang_indexer'
-	Plugin 'newclear/lh-vim-lib'
-	Plugin 'LucHermitte/vim-clang'
-	Plugin 'devx/c.vim'
+  Plugin 'Rip-Rip/clang_complete'
+  Plugin 'LucHermitte/clang_indexer'
+  Plugin 'newclear/lh-vim-lib'
+  Plugin 'LucHermitte/vim-clang'
+  Plugin 'devx/c.vim'
 endif
 " }}}
 
 " _. HTML {{{
 if count(g:vimified_packages, 'html')
-	Plugin 'tpope/vim-haml'
-	Plugin 'juvenn/mustache.vim'
-	Plugin 'tpope/vim-markdown'
-	Plugin 'digitaltoad/vim-jade'
-	Plugin 'slim-template/vim-slim'
+  Plugin 'tpope/vim-haml'
+  Plugin 'juvenn/mustache.vim'
+  Plugin 'tpope/vim-markdown'
+  Plugin 'digitaltoad/vim-jade'
+  Plugin 'slim-template/vim-slim'
 
-	au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-	au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-	au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 endif
 " }}}
 
 " _. CSS {{{
 if count(g:vimified_packages, 'css')
-	Plugin 'wavded/vim-stylus'
-	Plugin 'lunaru/vim-less'
-	nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
+  Plugin 'wavded/vim-stylus'
+  Plugin 'lunaru/vim-less'
+  nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
 endif
 " }}}
 
 " _. JS {{{
 if count(g:vimified_packages, 'js')
-	Plugin 'kchmck/vim-coffee-script'
-	Plugin 'alfredodeza/jacinto.vim'
-	au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-	au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-	au BufNewFile,BufReadPost *.js setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  Plugin 'kchmck/vim-coffee-script'
+  Plugin 'alfredodeza/jacinto.vim'
+  Plugin 'marijnh/tern_for_vim'
+  Plugin 'pangloss/vim-javascript'
+  Plugin 'mxw/vim-jsx'
+
+  let g:jsx_ext_required = 0
+  au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+  au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  "au BufNewFile,BufReadPost *.js setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 endif
 " }}}
 
 " _. Clojure {{{
 if count(g:vimified_packages, 'clojure')
-	Plugin 'guns/vim-clojure-static'
+  Plugin 'guns/vim-clojure-static'
   Plugin 'tpope/vim-leiningen'
-	Plugin 'tpope/vim-fireplace'
-	Plugin 'tpope/vim-classpath'
+  Plugin 'tpope/vim-fireplace'
+  Plugin 'tpope/vim-classpath'
 endif
 " }}}
 
 " _. Presentation {{{
 if count(g:vimified_packages, 'presentation')
-    Plugin 'vim-scripts/SyntaxRange'
-    Plugin 'tybenz/vimdeck'
+  Plugin 'vim-scripts/SyntaxRange'
+  Plugin 'tybenz/vimdeck'
 endif
 " }}}
 
 " _. Haskell {{{
 if count(g:vimified_packages, 'haskell')
-	Plugin 'Twinside/vim-syntax-haskell-cabal'
-	Plugin 'lukerandall/haskellmode-vim'
+  Plugin 'Twinside/vim-syntax-haskell-cabal'
+  Plugin 'lukerandall/haskellmode-vim'
 
-	au BufEnter *.hs compiler ghc
+  au BufEnter *.hs compiler ghc
 
-	let g:ghc = "/usr/local/bin/ghc"
-	let g:haddock_browser = "open"
+  let g:ghc = "/usr/local/bin/ghc"
+  let g:haddock_browser = "open"
 endif
 " }}}
 
 " _. Elixir {{{
 if count(g:vimified_packages, 'elixir')
-	Plugin 'elixir-lang/vim-elixir'
+  Plugin 'elixir-lang/vim-elixir'
 endif
 " }}}
 
 " _. Color {{{
 if count(g:vimified_packages, 'color')
-	Plugin 'sjl/badwolf'
-	Plugin 'altercation/vim-colors-solarized'
-	Plugin 'tomasr/molokai'
-	Plugin 'w0ng/vim-hybrid'
+  Plugin 'sjl/badwolf'
+  Plugin 'altercation/vim-colors-solarized'
+  Plugin 'tomasr/molokai'
+  Plugin 'w0ng/vim-hybrid'
 
-	" During installation the molokai colorscheme might not be avalable
-	if filereadable(globpath(&rtp, 'colors/molokai.vim'))
-		colorscheme molokai
-	else
-		colorscheme default
-	endif
+  " During installation the molokai colorscheme might not be avalable
+  if filereadable(globpath(&rtp, 'colors/molokai.vim'))
+    colorscheme molokai
+  else
+    colorscheme default
+  endif
 else
-	colorscheme default
+  colorscheme default
 endif
 " }}}
 
@@ -432,7 +430,7 @@ set numberwidth=3
 set winwidth=83
 set ruler
 if executable('zsh')
-	set shell=zsh\ -l
+  set shell=zsh\ -l
 endif
 set showcmd
 
@@ -453,7 +451,7 @@ set expandtab
 set wrap
 set formatoptions=qrn1
 if exists('+colorcolumn')
-	set colorcolumn=+1
+  set colorcolumn=+1
 endif
 " }}}
 
@@ -477,20 +475,20 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 " Cursorline {{{
 " Only show cursorline in the current window and in normal mode.
 augroup cline
-	au!
-	au WinLeave * set nocursorline
-	au WinEnter * set cursorline
-	au InsertEnter * set nocursorline
-	au InsertLeave * set cursorline
+  au!
+  au WinLeave * set nocursorline
+  au WinEnter * set cursorline
+  au InsertEnter * set nocursorline
+  au InsertLeave * set cursorline
 augroup END
 " }}}
 
 " Trailing whitespace {{{
 " Only shown when not in insert mode so I don't go insane.
 augroup trailing
-	au!
-	au InsertEnter * :set listchars-=trail:␣
-	au InsertLeave * :set listchars+=trail:␣
+  au!
+  au InsertEnter * :set listchars-=trail:␣
+  au InsertLeave * :set listchars+=trail:␣
 augroup END
 
 " Remove trailing whitespaces when saving
@@ -623,11 +621,11 @@ hi! link ShowMarksHLm LineNr
 
 " _ Vim {{{
 augroup ft_vim
-	au!
+  au!
 
-	au FileType vim setlocal foldmethod=marker
-	au FileType help setlocal textwidth=78
-	au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+  au FileType vim setlocal foldmethod=marker
+  au FileType help setlocal textwidth=78
+  au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 " }}}
 
@@ -669,6 +667,6 @@ vnoremap ar a[
 
 " Load addidional configuration (ie to overwrite shorcuts) {{{
 if filereadable(expand("~/.vim/after.vimrc"))
-	source ~/.vim/after.vimrc
+  source ~/.vim/after.vimrc
 endif
 " }}}
