@@ -139,11 +139,12 @@ endif
 
 " _. OS {{{
 if count(g:vimified_packages, 'os')
-  Plugin 'zaiste/tmux.vim'
-  Plugin 'benmills/vimux'
-  map <Leader>rp :VimuxPromptCommand<CR>
-  map <Leader>rl :VimuxRunLastCommand<CR>
-  map <LocalLeader>d :call VimuxRunCommand(@v, 0)<CR>
+	Plugin 'zaiste/tmux.vim'
+	Plugin 'benmills/vimux'
+  Plugin 'kballard/vim-fish'
+	map <Leader>rp :VimuxPromptCommand<CR>
+	map <Leader>rl :VimuxRunLastCommand<CR>
+	map <LocalLeader>d :call VimuxRunCommand(@v, 0)<CR>
 endif
 " }}}
 
@@ -232,15 +233,16 @@ endif
 
 " _. HTML {{{
 if count(g:vimified_packages, 'html')
-  Plugin 'tpope/vim-haml'
-  Plugin 'juvenn/mustache.vim'
-  Plugin 'tpope/vim-markdown'
-  Plugin 'digitaltoad/vim-jade'
-  Plugin 'slim-template/vim-slim'
+	Plugin 'tpope/vim-haml'
+	Plugin 'juvenn/mustache.vim'
+	Plugin 'tpope/vim-markdown'
+	Plugin 'digitaltoad/vim-jade'
+	Plugin 'slim-template/vim-slim'
+  Plugin 'tpope/vim-ragtag'
 
-  au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-  au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-  au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+	au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+	au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+	au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 endif
 " }}}
 
