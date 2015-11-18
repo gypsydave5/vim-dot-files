@@ -100,9 +100,6 @@ endif
 
 " _. Fancy {{{
 if count(g:vimified_packages, 'fancy')
-  "call g:Check_defined('g:airline_left_sep', '')
-  "call g:Check_defined('g:airline_right_sep', '')
-  "call g:Check_defined('g:airline_branch_prefix', '')
   Plugin 'roman/golden-ratio'
   Plugin 'edkolev/promptline.vim'
   Plugin 'bling/vim-airline'
@@ -233,16 +230,16 @@ endif
 
 " _. HTML {{{
 if count(g:vimified_packages, 'html')
-	Plugin 'tpope/vim-haml'
-	Plugin 'juvenn/mustache.vim'
-	Plugin 'tpope/vim-markdown'
-	Plugin 'digitaltoad/vim-jade'
-	Plugin 'slim-template/vim-slim'
+  Plugin 'tpope/vim-haml'
+  Plugin 'tpope/vim-markdown'
+  Plugin 'digitaltoad/vim-jade'
+  Plugin 'slim-template/vim-slim'
+  Plugin 'mustache/vim-mustache-handlebars'
   Plugin 'tpope/vim-ragtag'
 
-	au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-	au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-	au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+  au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 endif
 " }}}
 
@@ -258,7 +255,6 @@ endif
 if count(g:vimified_packages, 'js')
   Plugin 'kchmck/vim-coffee-script'
   Plugin 'alfredodeza/jacinto.vim'
-  Plugin 'marijnh/tern_for_vim'
   Plugin 'pangloss/vim-javascript'
   Plugin 'mxw/vim-jsx'
 
@@ -431,8 +427,8 @@ set number
 set numberwidth=3
 set winwidth=83
 set ruler
-if executable('zsh')
-  set shell=zsh\ -l
+if executable('bash')
+  set shell=bash\ -l
 endif
 set showcmd
 
@@ -574,8 +570,8 @@ vnoremap > >gv
 
 " Bubbling lines
 nmap <C-Up> [e
-nmap <C-Down> ]e
 vmap <C-Up> [egv
+nmap <C-Down> ]e
 vmap <C-Down> ]egv
 
 " }}}
@@ -600,11 +596,10 @@ nnoremap <leader>z zMzvzz
 
 " Quick editing {{{
 
-nnoremap <leader>ev <C-w>s<C-w>j:e $MYVIMRC<cr>
-nnoremap <leader>es <C-w>s<C-w>j:e ~/.vim/snippets/<cr>
-nnoremap <leader>eg <C-w>s<C-w>j:e ~/.gitconfig<cr>
-nnoremap <leader>ez <C-w>s<C-w>j:e ~/.zshrc<cr>
-nnoremap <leader>et <C-w>s<C-w>j:e ~/.tmux.conf<cr>
+nnoremap <leader>ev <C-w>v<C-w>j:e $MYVIMRC<cr>
+nnoremap <leader>es <C-w>v<C-w>j:e ~/.vim/snippets/<cr>
+nnoremap <leader>eg <C-w>v<C-w>j:e ~/.gitconfig<cr>
+nnoremap <leader>eb <C-w>v<C-w>j:e ~/.bashrc<cr>
 
 " --------------------
 
