@@ -127,46 +127,6 @@ map <C-i> :NERDTreeToggle<CR>
 
 " }}}
 
-"UltiSnips Triggers {{{
-"
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
-
-"function! g:UltiSnips_Complete()
-    "call UltiSnips#ExpandSnippet()
-    "if g:ulti_expand_res == 0
-        "if pumvisible()
-            "return "\<C-n>"
-        "else
-            "call UltiSnips#JumpForwards()
-            "if g:ulti_jump_forwards_res == 0
-               "return "\<TAB>"
-            "endif
-       "endif
-    "endif
-    "return ""
-"endfunction
-
-"au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsListSnippets="<c-e>"
-" this mapping Enter key to <C-y> to chose the current highlight item
-" and close the selection list, same as other IDEs.
-" CONFLICT with some plugins like tpope/Endwise
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
 " }}}
 
 "html tags {{{

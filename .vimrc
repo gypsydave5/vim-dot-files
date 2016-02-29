@@ -25,7 +25,7 @@ endif
 
 " PACKAGE LIST {{{
 if ! exists('g:vimified_packages')
-  let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color']
+  let g:vimified_packages = ['general', 'go', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color', 'db']
 endif
 " }}}
 
@@ -48,6 +48,7 @@ endif
 " _. General {{{
 if count(g:vimified_packages, 'general')
   Plugin 'editorconfig/editorconfig-vim'
+  let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
 
   Plugin 'rking/ag.vim'
   nnoremap <leader>a :Ag -i<space>
@@ -95,14 +96,37 @@ if count(g:vimified_packages, 'general')
 
   Plugin 't9md/vim-ruby-xmpfilter'
   Plugin 'tpope/vim-cucumber'
+
+endif
+" }}}
+"
+" _. tmux {{{
+if count(g:vimified_packages, 'tmux')
+  Plugin 'benmills/vimux'
+  Plugin 'jpalardy/vim-slime'
+  let g:slime_target = "tmux"
 endif
 " }}}
 
 " _. Fancy {{{
 if count(g:vimified_packages, 'fancy')
-  Plugin 'roman/golden-ratio'
   Plugin 'edkolev/promptline.vim'
   Plugin 'bling/vim-airline'
+  Plugin 'roman/golden-ratio'
+  let g:golden_ratio_exclude_nonmodifiable = 1
+  "Modified the plugin as per https://github.com/roman/golden-ratio/pull/15
+  let g:golden_ratio_filetypes_blacklist = ["nerdtree", "unite", "qf"]
+endif
+" }}}
+
+" _. DB {{{
+if count(g:vimified_packages, 'db')
+  Plugin 'vim-scripts/dbext.vim'
+
+  let g:dbext_default_SQLSRV_bin = 'tsql'
+  let g:dbext_default_SQLSRV_cmd_options = ''
+
+
 endif
 " }}}
 
@@ -115,10 +139,108 @@ endif
 "
 " _. Snippets {{{
 if count(g:vimified_packages, 'snippets')
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'SirVer/ultisnips'
-  Plugin 'Trevoke/ultisnips-rspec'
+  Plugin 'Shougo/neocomplete'
+  Plugin 'Shougo/neosnippet'
+  Plugin 'Shougo/neosnippet-snippets'
   Plugin 'gypsydave5/vim-snippets'
+
+  "_.echodoc {{{
+  Plugin 'Shougo/echodoc.vim'
+  let g:echodoc_enable_at_startup = 1
+  set cmdheight=2
+  " }}}
+
+
+  let g:neocomplete#enable_at_startup = 1
+  "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+  " Disable AutoComplPop.
+  let g:acp_enableAtStartup = 0
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplete#enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
+  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+  " Define dictionary.
+  let g:neocomplete#sources#dictionary#dictionaries = {
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+          \ }
+
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+      let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+  " Plugin key-mappings.
+  inoremap <expr><C-g>     neocomplete#undo_completion()
+  inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+  " Recommended key-mappings.
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? "\<C-y>" : "\<CR>"
+  endfunction
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  " Close popup by <Space>.
+  "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+  " AutoComplPop like behavior.
+  "let g:neocomplete#enable_auto_select = 1
+
+  " Shell like behavior(not recommended).
+  "set completeopt+=longest
+  "let g:neocomplete#enable_auto_select = 1
+  "let g:neocomplete#disable_auto_complete = 1
+  "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+  " Enable omni completion.
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+  " Enable heavy omni completion.
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+  "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+  "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+  " For perlomni.vim setting.
+  " https://github.com/c9s/perlomni.vim
+  let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+  " Plugin key-mappings.
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+  " SuperTab like snippets behavior.
+  "imap <expr><TAB>
+  " \ pumvisible() ? "\<C-n>" :
+  " \ neosnippet#expandable_or_jumpable() ?
+  " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  " For conceal markers.
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
 endif
 " }}}
 "
@@ -172,8 +294,19 @@ if count(g:vimified_packages, 'coding')
   Plugin 'scrooloose/syntastic'
   let g:syntastic_enable_signs=1
   let g:syntastic_auto_loc_list=1
-  let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'python', ], 'passive_filetypes': ['html', 'css', 'slim'] }
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
 
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_cursor_column = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_echo_current_error = 1
+  let g:syntastic_cursor_column = 0
+  let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+  let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'python', 'javascript'], 'passive_filetypes': ['html', 'css', 'slim', 'go'] }
   " --
 
   Plugin 'vim-scripts/Reindent'
@@ -183,6 +316,8 @@ if count(g:vimified_packages, 'coding')
 
   Plugin 'rizzatti/dash.vim'
   :nmap <silent> <leader>d <Plug>DashSearch
+
+  Plugin 'vim-scripts/SQLComplete.vim'
 
 endif
 " }}}
@@ -201,6 +336,22 @@ endif
 if count(g:vimified_packages, 'go')
   Plugin 'fatih/vim-go'
   let g:go_disable_autoinstall = 1
+  let g:go_snippet_engine = "neosnippet"
+  let g:go_metalinter_autosave = 1
+  let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+
+  au FileType go nmap <leader>gr <Plug>(go-run)
+  au FileType go nmap <leader>gb <Plug>(go-build)
+  au FileType go nmap <leader>gt <Plug>(go-test)
+  au FileType go nmap <leader>gc <Plug>(go-coverage)
+
+  au FileType go nmap <Leader>ds <Plug>(go-def-split)
+  au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+  au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+  au FileType go nmap <Leader>gi <Plug>(go-info)
+
+  au FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
 endif
 " }}}
 
@@ -327,7 +478,6 @@ syntax on
 " Set 5 lines to the cursor - when moving vertically
 set scrolloff=0
 
-
 " It defines where to look for the buffer user demanding (current window, all
 " windows in other tabs, or nowhere, i.e. open file from scratch every time) and
 " how to open the buffer (in the new split, tab, or in the current window).
@@ -337,6 +487,9 @@ set switchbuf=useopen
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" redraw the screen on focus
+:au FocusGained * :redraw!
 
 " }}}
 
@@ -386,7 +539,7 @@ set autoread
 set backspace=indent,eol,start
 set binary
 set cinoptions=:0,(s,u0,U1,g0,t0
-set completeopt=menuone,preview
+set completeopt=menu,menuone
 set encoding=utf-8
 set hidden
 set history=1000
@@ -437,7 +590,6 @@ set secure
 
 set matchtime=2
 
-set completeopt=longest,menuone,preview
 
 " White characters {{{
 set autoindent
@@ -573,6 +725,9 @@ nmap <C-Up> [e
 vmap <C-Up> [egv
 nmap <C-Down> ]e
 vmap <C-Down> ]egv
+
+" Change current directory to the current file
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 " }}}
 
