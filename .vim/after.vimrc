@@ -17,10 +17,10 @@ let g:airline_powerline_fonts = 1
 "fonts for different guis {{{
 if has("gui_running")
   if has("gui_gtk2")
-    set guifont=Inconsolata\ for\ Powerline\ 12
+    set guifont=Monoid:h12
     set guioptions-=m
   elseif has("gui_macvim")
-    set guifont=Meslo\ LG\ L\ for\ Powerline:h14
+    set guifont=Monoid:h12
     set guioptions-=m
   elseif has("gui_win32")
     set guifont=DejaVu_Sans_Mono_for_Powerline:h12:cANSI
@@ -28,10 +28,6 @@ if has("gui_running")
     set guioptions-=m
   endif
 endif
-" }}}
-
-" set filetypes {{{
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " }}}
 
 " WordProcessor Mode / Goyo {{{
@@ -69,12 +65,7 @@ nnoremap :Goyo<CR> :call ToggleWPMode()<CR>
 " }}}
 
 "colorschemes for term/gui {{{
-
-if has ("gui_running")
-	colorscheme base16-railscasts
-else
-	colorscheme badwolf
-end
+colorscheme badwolf
 
  "}}}
 
@@ -137,6 +128,7 @@ map <C-i> :NERDTreeToggle<CR>
 
 " {{{ some fun from Spike
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader>et <C-w><C-v><C-l>:e ~/.tmux.conf<cr>
 " }}}
 "
 "let g:EditorConfig_core_mode = 'external_command'

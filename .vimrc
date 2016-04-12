@@ -1,4 +1,4 @@
-"
+
 set nocompatible
 filetype on
 filetype off
@@ -25,7 +25,7 @@ endif
 
 " PACKAGE LIST {{{
 if ! exists('g:vimified_packages')
-  let g:vimified_packages = ['general', 'go', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color', 'db']
+  let g:vimified_packages = ['general', 'go', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color', 'db', 'scala']
 endif
 " }}}
 
@@ -96,7 +96,7 @@ if count(g:vimified_packages, 'general')
 
   Plugin 't9md/vim-ruby-xmpfilter'
   Plugin 'tpope/vim-cucumber'
-
+  Plugin 'jiangmiao/auto-pairs'
 endif
 " }}}
 "
@@ -125,8 +125,6 @@ if count(g:vimified_packages, 'db')
 
   let g:dbext_default_SQLSRV_bin = 'tsql'
   let g:dbext_default_SQLSRV_cmd_options = ''
-
-
 endif
 " }}}
 
@@ -150,7 +148,6 @@ if count(g:vimified_packages, 'snippets')
   set cmdheight=2
   " }}}
 
-
   let g:neocomplete#enable_at_startup = 1
   "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
   " Disable AutoComplPop.
@@ -168,7 +165,7 @@ if count(g:vimified_packages, 'snippets')
       \ 'default' : '',
       \ 'vimshell' : $HOME.'/.vimshell_hist',
       \ 'scheme' : $HOME.'/.gosh_completions'
-          \ }
+      \ }
 
   " Define keyword.
   if !exists('g:neocomplete#keyword_patterns')
@@ -189,21 +186,10 @@ if count(g:vimified_packages, 'snippets')
     "return pumvisible() ? "\<C-y>" : "\<CR>"
   endfunction
   " <TAB>: completion.
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
   inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
   inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-  " Close popup by <Space>.
-  "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-  " AutoComplPop like behavior.
-  "let g:neocomplete#enable_auto_select = 1
-
-  " Shell like behavior(not recommended).
-  "set completeopt+=longest
-  "let g:neocomplete#enable_auto_select = 1
-  "let g:neocomplete#disable_auto_complete = 1
-  "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
   " Enable omni completion.
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -219,27 +205,22 @@ if count(g:vimified_packages, 'snippets')
   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
   "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
   "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
   " For perlomni.vim setting.
   " https://github.com/c9s/perlomni.vim
   let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
   " Plugin key-mappings.
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k>     <Plug>(neosnippet_expand_target)
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
 
   " SuperTab like snippets behavior.
-  "imap <expr><TAB>
-  " \ pumvisible() ? "\<C-n>" :
-  " \ neosnippet#expandable_or_jumpable() ?
-  " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
   smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
   " For conceal markers.
   if has('conceal')
-    set conceallevel=2 concealcursor=niv
+    set conceallevel=0 concealcursor=niv
   endif
 endif
 " }}}
@@ -258,12 +239,11 @@ endif
 
 " _. OS {{{
 if count(g:vimified_packages, 'os')
-	Plugin 'zaiste/tmux.vim'
-	Plugin 'benmills/vimux'
-  Plugin 'kballard/vim-fish'
-	map <Leader>rp :VimuxPromptCommand<CR>
-	map <Leader>rl :VimuxRunLastCommand<CR>
-	map <LocalLeader>d :call VimuxRunCommand(@v, 0)<CR>
+  Plugin 'tmux-plugins/vim-tmux'
+  Plugin 'benmills/vimux'
+  map <Leader>rp :VimuxPromptCommand<CR>
+  map <Leader>rl :VimuxRunLastCommand<CR>
+  map <LocalLeader>d :call VimuxRunCommand(@v, 0)<CR>
 endif
 " }}}
 
@@ -281,7 +261,8 @@ if count(g:vimified_packages, 'coding')
   nmap <leader># :call NERDComment(0, "invert")<cr>
   vmap <leader># :call NERDComment(0, "invert")<cr>
 
-  " - Plugin 'msanders/snipmate.vim'
+  Plugin 'tpope/vim-commentary'
+
   Plugin 'sjl/splice.vim'
 
   Plugin 'tpope/vim-fugitive'
@@ -294,6 +275,7 @@ if count(g:vimified_packages, 'coding')
   Plugin 'scrooloose/syntastic'
   let g:syntastic_enable_signs=1
   let g:syntastic_auto_loc_list=1
+  let g:syntastic_loc_list_height=5
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
@@ -305,7 +287,6 @@ if count(g:vimified_packages, 'coding')
   let g:syntastic_check_on_wq = 0
   let g:syntastic_echo_current_error = 1
   let g:syntastic_cursor_column = 0
-  let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
   let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'python', 'javascript'], 'passive_filetypes': ['html', 'css', 'slim', 'go'] }
   " --
 
@@ -337,6 +318,7 @@ if count(g:vimified_packages, 'go')
   Plugin 'fatih/vim-go'
   let g:go_disable_autoinstall = 1
   let g:go_snippet_engine = "neosnippet"
+  let g:go_fmt_command = "goimports"
   let g:go_metalinter_autosave = 1
   let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 
@@ -388,6 +370,8 @@ if count(g:vimified_packages, 'html')
   Plugin 'mustache/vim-mustache-handlebars'
   Plugin 'tpope/vim-ragtag'
 
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
   au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
   au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -412,13 +396,19 @@ if count(g:vimified_packages, 'js')
   let g:jsx_ext_required = 0
   au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
   au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-  "au BufNewFile,BufReadPost *.js setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+
+  "let g:syntastic_javascript_checkers = ['standard']
+  "autocmd bufwritepost *.js silent !standard-format -w %
+  "set autoread
 endif
 " }}}
 
 " _. Clojure {{{
 if count(g:vimified_packages, 'clojure')
   Plugin 'guns/vim-clojure-static'
+  Plugin 'guns/vim-sexp'
+  let g:sexp_filetypes = 'lisp,clojure'
+  Plugin 'tpope/vim-sexp-mappings-for-regular-people'
   Plugin 'tpope/vim-leiningen'
   Plugin 'tpope/vim-fireplace'
   Plugin 'tpope/vim-classpath'
@@ -467,6 +457,15 @@ else
   colorscheme default
 endif
 " }}}
+"
+" _. Scala {{{
+if count(g:vimified_packages, 'scala')
+    Plugin 'ensime/ensime-vim'
+    Plugin 'derekwyatt/vim-scala'
+    au Filetype scala autocmd BufWritePost *.scala :EnTypeCheck
+    au Filetype scala nnoremap <Leader>t :EnTypeCheck<CR>
+endif
+" }}}
 
 " }}}
 
@@ -489,7 +488,7 @@ set switchbuf=useopen
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " redraw the screen on focus
-:au FocusGained * :redraw!
+:au FocusGained * :redraw!<CR>
 
 " }}}
 
@@ -506,6 +505,7 @@ nmap <silent> <leader>ll :set invlist<CR>
 nmap <silent> <leader>nn :set invnumber<CR>
 nmap <silent> <leader>pp :set invpaste<CR>
 nmap <silent> <leader>ii :set invrelativenumber<CR>
+nmap <silent> <leader>rr :redraw!<CR>
 
 " I suck at typing - and I can never get my finger off shift...
 command! W :w
@@ -731,18 +731,12 @@ nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 " }}}
 
+" Word Processing {{{
+Plugin 'reedes/vim-pencil'
+Plugin 'junegunn/goyo.vim'
+" }}}
+
 " . folding {{{
-
-set foldlevelstart=0
-set foldmethod=syntax
-
-" Space to toggle folds.
-nnoremap <space> za
-vnoremap <space> za
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
 
 " Use ,z to "focus" the current fold.
 nnoremap <leader>z zMzvzz
@@ -755,6 +749,7 @@ nnoremap <leader>ev <C-w>v<C-w>j:e $MYVIMRC<cr>
 nnoremap <leader>es <C-w>v<C-w>j:e ~/.vim/snippets/<cr>
 nnoremap <leader>eg <C-w>v<C-w>j:e ~/.gitconfig<cr>
 nnoremap <leader>eb <C-w>v<C-w>j:e ~/.bashrc<cr>
+nnoremap <leader>et <C-w>v<C-w>j:e ~/.tmux.conf<cr>
 
 " --------------------
 
