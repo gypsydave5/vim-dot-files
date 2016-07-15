@@ -1,0 +1,140 @@
+set nocompatible
+filetype off
+
+" Kick off Vundle {{{
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+" }}}
+
+" Packages {{{
+
+" Colors {{{
+Plugin 'sjl/badwolf'
+" }}}
+
+" General {{{
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-surround'
+Plugin 'elzr/vim-json'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kana/vim-textobj-user'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'vim-scripts/YankRing.vim'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'Spaceghost/vim-matchit'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/scratch.vim'
+Plugin 'troydm/easybuffer.vim'
+Plugin 'tpope/vim-cucumber'
+Plugin 'jiangmiao/auto-pairs'
+" }}}
+
+" Tmux {{
+Plugin 'tmux-plugins/vim-tmux'
+Plugin 'benmills/vimux'
+Plugin 'jpalardy/vim-slime'
+" }}
+
+" Fancy {{{
+Plugin 'edkolev/promptline.vim'
+Plugin 'bling/vim-airline'
+Plugin 'roman/golden-ratio'
+" }}}
+
+" Databases {{{
+Plugin 'vim-scripts/dbext.vim'
+Plugin 'vim-scripts/SQLComplete.vim'
+" }}}
+
+" Groovy {{{
+Plugin 'tfnico/vim-gradle'
+Plugin 'vim-scripts/groovy.vim'
+" }}}
+
+" Completion {{{
+Plugin 'Valloric/YouCompleteMe'
+" }}}
+
+" Indentation {{{
+Plugin 'Yggdroot/indentLine'
+" }}}
+
+" Coding {{{
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'rizzatti/dash.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'aklt/plantuml-syntax'
+" }}}
+
+" Python {{{
+Plugin 'klen/python-mode'
+Plugin 'python.vim'
+Plugin 'python_match.vim'
+Plugin 'pythoncomplete'
+" }}}
+
+" Go {{{
+Plugin 'fatih/vim-go'
+" }}}
+
+" Ruby {{{
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'thoughtbot/vim-rspec'
+" }}}
+
+" Web {{{
+Plugin 'tpope/vim-haml'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'slim-template/vim-slim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'tpope/vim-ragtag'
+Plugin 'wavded/vim-stylus'
+Plugin 'lunaru/vim-less'
+" }}}
+
+" JavaScripts {{{
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'alfredodeza/jacinto.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+" }}}
+
+" Lisps {{{
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-classpath'
+" }}}
+
+" Scala {{{
+Plugin 'ensime/ensime-vim'
+Plugin 'derekwyatt/vim-scala'
+" }}}
+" }}}
+
+call vundle#end()
+
+filetype plugin indent on
+
+syntax on
+
+runtime! init/**.vim
+
+if filereadable($HOME . "/.vimrc.local")
+    source ~/.vimrc.local
+endif

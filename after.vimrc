@@ -30,71 +30,19 @@ if has("gui_running")
 endif
 " }}}
 
-" WordProcessor Mode / Goyo {{{
-let g:goyo_width=65
-let g:wp_mode_is_on = 0
-function! ToggleWPMode()
-    if g:wp_mode_is_on
-        set formatoptions=tcq
-        set nowrap nolinebreak expandtab
-        silent! nunmap <buffer> k
-        silent! nunmap <buffer> j
-        silent! nunmap <buffer> 0
-        silent! nunmap <buffer> $
-        silent! iunmap <buffer> k
-        silent! iunmap <buffer> j
-        silent! iunmap <buffer> 0
-        silent! iunmap <buffer> $
-        let g:wp_mode_is_on = 0
-        Goyo
-    else
-        set formatoptions=ant1
-        noremap k gk
-        noremap j gj
-        noremap 0 g0
-        noremap $ g$
-        set wrap linebreak nolist noexpandtab
-        set formatprg=par
-        set spell spelllang=en_us
-        let g:wp_mode_is_on = 1
-        Goyo
-    endif
-endfunction
-command! -nargs=? Goyo call s:goyo(<args>) call ToggleWPMode()
-nnoremap :Goyo<CR> :call ToggleWPMode()<CR>
-" }}}
-
 "colorschemes for term/gui {{{
 colorscheme badwolf
-
  "}}}
 
-"set gx browser {{{
-if has ('win32')
-	:let g:netrw_browsex_viewer= "chrome.exe "
-endif
-"}}}
-
-"vim-rspec bindings and setup {{{
-"
-"nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-"nnoremap <Leader>s :call RunNearestSpec()<CR>
-"nnoremap <Leader>l :call RunLastSpec()<CR>
-"let g:rspec_runner = "os_x_iterm"
-"let g:rspec_command = "Dispatch rspec {spec}"
-"let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-
-"}}}
-
 "promptline settings {{{
-let g:promptline_theme = 'airline'
-let g:promptline_preset = {
-        \'a' : [ promptline#slices#battery(), promptline#slices#host({ 'only_if_ssh': 1 }) ],
-        \'b' : [ promptline#slices#cwd({ 'dir_limit': 1}) ],
-        \'c' : [ promptline#slices#vcs_branch() ],
-        \'x' : [ promptline#slices#git_status()],
-        \'y' : [ promptline#slices#jobs() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]}
+ let g:promptline_theme = 'airline'
+ let g:promptline_preset = {
+         \'a' : [ promptline#slices#battery(), promptline#slices#host({ 'only_if_ssh': 1 }) ],
+         \'b' : [ promptline#slices#cwd({ 'dir_limit': 1}) ],
+         \'c' : [ promptline#slices#vcs_branch() ],
+         \'x' : [ promptline#slices#git_status()],
+         \'y' : [ promptline#slices#jobs() ],
+         \'warn' : [ promptline#slices#last_exit_code() ]}
 "}}}
 
 "autosave! {{{
@@ -118,7 +66,6 @@ map <C-i> :NERDTreeToggle<CR>
 
 " }}}
 
-" }}}
 
 "html tags {{{
 
@@ -130,7 +77,7 @@ map <C-i> :NERDTreeToggle<CR>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 nnoremap <leader>et <C-w><C-v><C-l>:e ~/.tmux.conf<cr>
 " }}}
-"
+
 "let g:EditorConfig_core_mode = 'external_command'
 
 autocmd FileType ruby nmap <buffer> <F4> <Plug>(xmpfilter-mark)
@@ -152,9 +99,3 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-" bind K to grep word under cursor
-"nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" NERDTreeToggle
-"nnoremap <Tab> <C-W>w
