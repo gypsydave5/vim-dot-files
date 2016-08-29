@@ -137,6 +137,7 @@ endif
 " _. Snippets {{{
 if count(g:vimified_packages, 'snippets')
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
 let g:airline#extensions#ycm#enabled = 1
 endif
 " }}}
@@ -272,8 +273,10 @@ endif
 " _. Clang {{{
 autocmd FileType make set noexpandtab
 if count(g:vimified_packages, 'clang')
-autocmd BufWritePre *.c %!clang-format -style=Google
-autocmd BufWritePre *.h %!clang-format -style=Google
+"autocmd BufWritePre *.c %!clang-format -style=Google
+"autocmd BufWritePre *.h %!clang-format -style="{BasedOnStyle: Google, UseTab: Always}"
+autocmd BufWritePre *.h :%pyf /usr/local/Cellar/clang-format/2016-06-27/share/clang/clang-format.py
+autocmd BufWritePre *.c :%pyf /usr/local/Cellar/clang-format/2016-06-27/share/clang/clang-format.py
 let &path.="deps/,"
 endif
 
