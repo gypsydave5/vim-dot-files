@@ -55,14 +55,11 @@ colorscheme badwolf
 
 "NERDTree remap {{{
 
-map <C-i> :NERDTreeToggle<CR>
 
 " }}}
 
 "Remap Tab to change window {{{
 
-:nnoremap <Tab> <C-W><C-W>
-:nnoremap <S-Tab> <C-W>W
 
 " }}}
 
@@ -80,22 +77,3 @@ nnoremap <leader>et <C-w><C-v><C-l>:e ~/.tmux.conf<cr>
 
 "let g:EditorConfig_core_mode = 'external_command'
 
-autocmd FileType ruby nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-autocmd FileType ruby xmap <buffer> <F4> <Plug>(xmpfilter-mark)
-autocmd FileType ruby imap <buffer> <F4> <Plug>(xmpfilter-mark)
-
-autocmd FileType ruby nmap <buffer> <F5> <Plug>(xmpfilter-run)
-autocmd FileType ruby xmap <buffer> <F5> <Plug>(xmpfilter-run)
-autocmd FileType ruby imap <buffer> <F5> <Plug>(xmpfilter-run)
-
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
