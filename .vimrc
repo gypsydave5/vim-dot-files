@@ -310,6 +310,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'alfredodeza/jacinto.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'leafgarland/typescript-vim'
 
 let g:jsx_ext_required = 0
 au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
