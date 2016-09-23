@@ -31,7 +31,7 @@ endif
 
 " PACKAGE LIST {{{
 if !exists('g:vimified_packages')
-let g:vimified_packages = ['general', 'go', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color', 'db', 'scala', 'clang', 'snippets']
+let g:vimified_packages = ['general', 'go', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color', 'db', 'scala', 'clang', 'snippets', 'java']
 endif
 " }}}
 
@@ -131,6 +131,9 @@ endif
 if count(g:vimified_packages, 'java')
 Plugin 'tfnico/vim-gradle'
 Plugin 'vim-scripts/groovy.vim'
+Plugin 'artur-shaik/vim-javacomplete2'
+
+let g:syntastic_java_javac_config_file_enabled = 1
 endif
 " }}}
 "
