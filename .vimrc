@@ -61,6 +61,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'maxbrunsfeld/vim-yankstack'
 
+Plugin 'godlygeek/tabular'
 
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-surround'
