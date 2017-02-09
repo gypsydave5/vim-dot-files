@@ -58,12 +58,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'maxbrunsfeld/vim-yankstack'
-
-<<<<<<< HEAD
 Plugin 'godlygeek/tabular'
 
-=======
->>>>>>> small changes
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
