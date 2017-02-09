@@ -19,7 +19,6 @@ endif
 " }}}
 
 let mapleader = ","
-let maplocalleader = "\\"
 inoremap jj <Esc>
 
 " Local vimrc configuration {{{
@@ -54,18 +53,21 @@ nnoremap <leader>a :Ag -i<space>
 
 Plugin 'matthias-guenther/hammer.vim'
 nmap <leader>p :Hammer<cr>
-
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'maxbrunsfeld/vim-yankstack'
 
+<<<<<<< HEAD
 Plugin 'godlygeek/tabular'
 
+=======
+>>>>>>> small changes
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
+Plugin 'vito-c/jq.vim'
 Plugin 'scrooloose/nerdtree'
 " Disable the scrollbars (NERDTree)
 set guioptions-=r
@@ -97,6 +99,10 @@ nmap <leader>be :EasyBufferToggle<enter>
 " Plugin 't9md/vim-ruby-xmpfilter'
 Plugin 'tpope/vim-cucumber'
 Plugin 'jiangmiao/auto-pairs'
+
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'diepm/vim-rest-console'
+
 endif
 " }}}
 "
@@ -236,27 +242,29 @@ endif
 
 " _. Go {{{
 if count(g:vimified_packages, 'go')
-Plugin 'fatih/vim-go'
-let g:go_disable_autoinstall = 1
-let g:go_fmt_command = "goimports"
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+    Plugin 'fatih/vim-go'
+    let g:go_disable_autoinstall = 1
+    let g:go_fmt_command = "goimports"
+    let g:go_metalinter_autosave = 1
+    let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 
-au FileType go nmap <leader>gr <Plug>(go-run)
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gt <Plug>(go-test)
-au FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
-au FileType go nmap <leader>gv <Plug>(go-vet)
-au FileType go nmap <leader>gd <Plug>(go-doc-vertical)
-au FileType go nmap <leader>gD <Plug>(go-doc-browser)
+    au FileType go nmap <leader>gr <Plug>(go-run)
+    au FileType go nmap <leader>gb <Plug>(go-build)
+    au FileType go nmap <leader>gt <Plug>(go-test)
+    au FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
+    au FileType go nmap <leader>gv <Plug>(go-vet)
+    au FileType go nmap <leader>gd <Plug>(go-doc-vertical)
+    au FileType go nmap <leader>gD <Plug>(go-doc-browser)
 
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+    au FileType go nmap <Leader>ds <Plug>(go-def-split)
+    au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+    au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
-au FileType go nmap <Leader>gi <Plug>(go-info)
+    au FileType go nmap <Leader>gi <Plug>(go-info)
 
-au FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
+    au FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
+
+    Plugin 'godoctor/godoctor.vim'
 endif
 " }}}
 
@@ -277,10 +285,10 @@ endif
 " _. Clang {{{
 autocmd FileType make set noexpandtab
 if count(g:vimified_packages, 'clang')
-"autocmd BufWritePre *.c %!clang-format -style=Google
-"autocmd BufWritePre *.h %!clang-format -style="{BasedOnStyle: Google, UseTab: Always}"
-autocmd BufWritePre *.h :%pyf /usr/local/Cellar/clang-format/2016-06-27/share/clang/clang-format.py
-autocmd BufWritePre *.c :%pyf /usr/local/Cellar/clang-format/2016-06-27/share/clang/clang-format.py
+autocmd BufWritePre *.c %!clang-format -style=Google
+autocmd BufWritePre *.h %!clang-format -style=Google
+autocmd BufWritePre *.cpp %!clang-format -style=Google
+autocmd BufWritePre *.cc %!clang-format -style=Google
 let &path.="deps/,"
 endif
 
@@ -325,7 +333,7 @@ au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 exp
 
 let g:syntastic_filetype_map = {"javascript.jsx": "javascript"}
 let g:syntastic_javascript_checkers = ['standard']
-"autocmd bufwritepost *.js silent !standard-format -w %
+" au bufwritepost *.js silent !standard --fix %
 set autoread
 
 endif
