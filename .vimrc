@@ -56,7 +56,6 @@ nmap <leader>p :Hammer<cr>
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-unimpaired'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'godlygeek/tabular'
 
@@ -65,6 +64,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
 Plugin 'vito-c/jq.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-unimpaired'
 " Disable the scrollbars (NERDTree)
 set guioptions-=r
 set guioptions-=L
@@ -109,6 +109,27 @@ Plugin 'jpalardy/vim-slime'
 let g:slime_target = "tmux"
 endif
 " }}}
+"
+
+" _. rust {{{
+Plugin 'rust-lang/rust.vim'
+Plugin 'timonv/vim-cargo'
+Plugin 'cespare/vim-toml'
+Plugin 'mattn/webapi-vim'
+
+au BufRead,BufNewFile *.rs set filetype=rust
+let g:syntastic_quiet_messages = {"regex": 'is unstable and should only be used on the nightly compiler, but it is currently accepted for backwards compatibility; this will soon change, see issue #31847 for more details'}
+
+let g:rustfmt_autosave = 1
+au FileType rust nmap <leader>rx :RustExpand<CR>
+au FileType rust nmap <leader>rp :RustPlay<CR>
+
+let g:cargo_command = "!cargo {cmd}"
+au FileType rust nmap <leader>cr :CargoRun<CR>
+au FileType rust nmap <leader>cb :CargoBuild<CR>
+au FileType rust nmap <leader>ct :CargoTest<CR>
+au FileType rust nmap <leader>cm :CargoBench<CR>
+" }}}
 
 " _. Fancy {{{
 if count(g:vimified_packages, 'fancy')
@@ -142,9 +163,17 @@ endif
 "
 " _. Snippets {{{
 if count(g:vimified_packages, 'snippets')
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-let g:airline#extensions#ycm#enabled = 1
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'rdnetto/YCM-Generator'
+    let g:airline#extensions#ycm#enabled = 1
+
+    Plugin 'SirVer/ultisnips'
+    let g:UltiSnipsExpandTrigger="<C-T>"
+    let g:UltiSnipsJumpForwardTrigger="<Tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+    let g:UltiSnipsUsePythonVersion=2
+
+    Plugin 'honza/vim-snippets'
 endif
 " }}}
 "
@@ -261,6 +290,12 @@ if count(g:vimified_packages, 'go')
     au FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
 
     Plugin 'godoctor/godoctor.vim'
+    if exists("g:did_load_filetypes")
+        filetype off
+        filetype plugin indent off
+    endif
+    set rtp+=~/.vim/godoctor.vim
+    filetype plugin indent on
 endif
 " }}}
 
@@ -281,14 +316,14 @@ endif
 " _. Clang {{{
 autocmd FileType make set noexpandtab
 if count(g:vimified_packages, 'clang')
-autocmd BufWritePre *.c %!clang-format -style=Google
-autocmd BufWritePre *.h %!clang-format -style=Google
-autocmd BufWritePre *.cpp %!clang-format -style=Google
-autocmd BufWritePre *.cc %!clang-format -style=Google
-let &path.="deps/,"
+    autocmd BufWritePre *.h :%pyf /usr/local/Cellar/clang-format/2016-08-03/share/clang/clang-format.py
+    autocmd BufWritePre *.c :%pyf /usr/local/Cellar/clang-format/2016-08-03/share/clang/clang-format.py
+    autocmd BufWritePre *.cpp :%pyf /usr/local/Cellar/clang-format/2016-08-03/share/clang/clang-format.py
+    autocmd BufWritePre *.cc :%pyf /usr/local/Cellar/clang-format/2016-08-03/share/clang/clang-format.py
+    let &path.="deps/,"
+    au BufNewFile,BufReadPost *.c setl shiftwidth=2 tabstop=2 softtabstop=2 noexpandtab
 endif
 
-au BufNewFile,BufReadPost *.c setl shiftwidth=2 tabstop=2 softtabstop=2 noexpandtab
 " }}}
 
 " _. HTML {{{
@@ -356,13 +391,17 @@ endif
 
 " _. Haskell {{{
 if count(g:vimified_packages, 'haskell')
-Plugin 'Twinside/vim-syntax-haskell-cabal'
-Plugin 'lukerandall/haskellmode-vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
 
-au BufEnter *.hs compiler ghc
+au FileType haskell setlocal formatprg=hindent\ --style\ johan-tibell
+autocmd BufWritePre *.hs :%!hindent --style johan-tibell
 
-let g:ghc = "/usr/local/bin/ghc"
-let g:haddock_browser = "open"
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
 endif
 " }}}
 
@@ -406,8 +445,6 @@ call vundle#end()
 call yankstack#setup()
 
 filetype plugin indent on
-
-syntax on
 
 " Set 5 lines to the cursor - when moving vertically
 set scrolloff=0
@@ -748,6 +785,7 @@ vnoremap ar a[
 if filereadable(expand("~/.vim/after.vimrc"))
 source ~/.vim/after.vimrc
 endif
+
+syntax enable
 " }}}
-filetype plugin on
-autocmd FileType make set noexpandtab
+"
