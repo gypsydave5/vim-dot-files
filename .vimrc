@@ -269,7 +269,7 @@ endif
 if count(g:vimified_packages, 'go')
     Plugin 'fatih/vim-go'
     let g:go_disable_autoinstall = 1
-    let g:go_fmt_command = "goimports"
+    let g:go_fmt_command = "gofmt"
     let g:go_metalinter_autosave = 1
     let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 
