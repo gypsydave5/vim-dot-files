@@ -65,6 +65,8 @@ Plugin 'elzr/vim-json'
 Plugin 'vito-c/jq.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-unimpaired'
+
+Plugin 'mattn/webapi-vim'
 " Disable the scrollbars (NERDTree)
 set guioptions-=r
 set guioptions-=L
@@ -115,7 +117,6 @@ endif
 Plugin 'rust-lang/rust.vim'
 Plugin 'timonv/vim-cargo'
 Plugin 'cespare/vim-toml'
-Plugin 'mattn/webapi-vim'
 
 au BufRead,BufNewFile *.rs set filetype=rust
 let g:syntastic_quiet_messages = {"regex": 'is unstable and should only be used on the nightly compiler, but it is currently accepted for backwards compatibility; this will soon change, see issue #31847 for more details'}
@@ -128,6 +129,7 @@ let g:cargo_command = "!cargo {cmd}"
 au FileType rust nmap <leader>cr :CargoRun<CR>
 au FileType rust nmap <leader>cb :CargoBuild<CR>
 au FileType rust nmap <leader>ct :CargoTest<CR>
+au FileType rust nmap <leader>ci :CargoTest -- --ignored<CR>
 au FileType rust nmap <leader>cm :CargoBench<CR>
 " }}}
 
@@ -173,7 +175,7 @@ if count(g:vimified_packages, 'snippets')
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     let g:UltiSnipsUsePythonVersion=2
 
-    Plugin 'honza/vim-snippets'
+    Plugin 'gypsydave5/vim-snippets'
 endif
 " }}}
 "
@@ -216,6 +218,7 @@ Plugin 'tpope/vim-commentary'
 
 Plugin 'sjl/splice.vim'
 
+Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 nmap <leader>g :Ggrep
 " ,f for global git serach for word under the cursor (with highlight)
@@ -354,8 +357,8 @@ endif
 if count(g:vimified_packages, 'js')
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'alfredodeza/jacinto.vim'
-Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 
 let g:jsx_ext_required = 0
