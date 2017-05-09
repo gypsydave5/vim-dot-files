@@ -51,6 +51,9 @@ let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
 Plugin 'rking/ag.vim'
 nnoremap <leader>a :Ag -i<space>
 
+Plugin 'jremmen/vim-ripgrep'
+nnoremap <leader>r :Rg -i<space>
+
 Plugin 'matthias-guenther/hammer.vim'
 nmap <leader>p :Hammer<cr>
 Plugin 'tpope/vim-endwise'
