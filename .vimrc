@@ -322,10 +322,10 @@ endif
 " _. Clang {{{
 autocmd FileType make set noexpandtab
 if count(g:vimified_packages, 'clang')
-    autocmd BufWritePre *.h :%pyf /usr/local/Cellar/clang-format/2016-08-03/share/clang/clang-format.py
-    autocmd BufWritePre *.c :%pyf /usr/local/Cellar/clang-format/2016-08-03/share/clang/clang-format.py
-    autocmd BufWritePre *.cpp :%pyf /usr/local/Cellar/clang-format/2016-08-03/share/clang/clang-format.py
-    autocmd BufWritePre *.cc :%pyf /usr/local/Cellar/clang-format/2016-08-03/share/clang/clang-format.py
+    autocmd BufWritePre *.h :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
+    autocmd BufWritePre *.c :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
+    autocmd BufWritePre *.cpp :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
+    autocmd BufWritePre *.cc :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
     let &path.="deps/,"
     au BufNewFile,BufReadPost *.c setl shiftwidth=2 tabstop=2 softtabstop=2 noexpandtab
 endif
@@ -370,7 +370,7 @@ au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 exp
 
 let g:syntastic_filetype_map = {"javascript.jsx": "javascript"}
 let g:syntastic_javascript_checkers = ['standard']
-" au bufwritepost *.js silent !standard --fix %
+au bufwritepost *.js silent !standard --fix %
 set autoread
 
 endif
