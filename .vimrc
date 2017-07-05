@@ -161,6 +161,7 @@ if count(g:vimified_packages, 'java')
 Plugin 'tfnico/vim-gradle'
 Plugin 'vim-scripts/groovy.vim'
 Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'udalov/kotlin-vim'
 
 let g:syntastic_java_javac_config_file_enabled = 1
 endif
