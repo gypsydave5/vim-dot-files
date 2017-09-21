@@ -118,13 +118,13 @@ endif
 
 " _. rust {{{
 Plugin 'rust-lang/rust.vim'
-Plugin 'timonv/vim-cargo'
 Plugin 'cespare/vim-toml'
 
 au BufRead,BufNewFile *.rs set filetype=rust
+au BufRead,BufNewFile *.toml set filetype=toml
 let g:syntastic_quiet_messages = {"regex": 'is unstable and should only be used on the nightly compiler, but it is currently accepted for backwards compatibility; this will soon change, see issue #31847 for more details'}
 
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 au FileType rust nmap <leader>rx :RustExpand<CR>
 au FileType rust nmap <leader>rp :RustPlay<CR>
 
@@ -336,8 +336,7 @@ endif
 " _. HTML {{{
 if count(g:vimified_packages, 'html')
 Plugin 'tpope/vim-haml'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'slim-template/vim-slim'
+Plugin 'digitaltoad/vim-pug'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-ragtag'
 
@@ -603,11 +602,11 @@ autocmd! BufWritePost vimrc source ~/.vimrc
 " Cursorline {{{
 " Only show cursorline in the current window and in normal mode.
 augroup cline
-au!
-au WinLeave * set nocursorline
-au WinEnter * set cursorline
-au InsertEnter * set nocursorline
-au InsertLeave * set cursorline
+    au!
+    au WinLeave * set nocursorline
+    au WinEnter * set cursorline
+    au InsertEnter * set nocursorline
+    au InsertLeave * set cursorline
 augroup END
 " }}}
 
