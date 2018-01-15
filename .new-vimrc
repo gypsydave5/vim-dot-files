@@ -25,7 +25,6 @@ Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
-Plugin 'scrooloose/nerdtree'
 Plugin 'kana/vim-textobj-user'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'vim-scripts/YankRing.vim'
@@ -71,6 +70,7 @@ Plugin 'Yggdroot/indentLine'
 " Coding {{{
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'aklt/plantuml-syntax'
@@ -106,7 +106,6 @@ Plugin 'lunaru/vim-less'
 " }}}
 
 " JavaScripts {{{
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'alfredodeza/jacinto.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -121,10 +120,6 @@ Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-classpath'
 " }}}
 
-" Scala {{{
-Plugin 'ensime/ensime-vim'
-Plugin 'derekwyatt/vim-scala'
-" }}}
 " }}}
 
 call vundle#end()

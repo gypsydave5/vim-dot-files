@@ -76,9 +76,9 @@ set guioptions-=L
 " Keep NERDTree window fixed between multiple toggles
 set winfixwidth
 
-
 Plugin 'kana/vim-textobj-user'
 Plugin 'vim-scripts/YankRing.vim'
+
 let g:yankring_replace_n_pkey = '<leader>['
 let g:yankring_replace_n_nkey = '<leader>]'
 let g:yankring_history_dir = '~/.vim/tmp/'
@@ -230,26 +230,7 @@ nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R>
 " same in visual mode
 :vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
 
-Plugin 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_loc_list_height=5
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_cursor_column = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_echo_current_error = 1
-let g:syntastic_cursor_column = 0
-let g:syntastic_mode_map = { 'mode': 'active',
-\ 'active_filetypes': [],
-\ 'passive_filetypes': ['html', 'css', 'slim', 'go', 'javascript'] }
-" --
-
+Plugin 'w0rp/ale'
 Plugin 'vim-scripts/Reindent'
 
 autocmd FileType gitcommit set tw=68 spell
@@ -368,10 +349,10 @@ let g:jsx_ext_required = 0
 au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-let g:syntastic_filetype_map = {"javascript.jsx": "javascript"}
-let g:syntastic_javascript_checkers = ['standard']
-au bufwritepost *.js silent !standard --fix %
 set autoread
+let g:ale_linters = {
+\   'javascript': ['standard'],
+\}
 
 endif
 " }}}
@@ -385,13 +366,6 @@ Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 Plugin 'tpope/vim-leiningen'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-classpath'
-endif
-" }}}
-
-" _. Presentation {{{
-if count(g:vimified_packages, 'presentation')
-Plugin 'vim-scripts/SyntaxRange'
-Plugin 'tybenz/vimdeck'
 endif
 " }}}
 
