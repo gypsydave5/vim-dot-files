@@ -256,10 +256,12 @@ endif
 " _. Go {{{
 if count(g:vimified_packages, 'go')
     Plugin 'fatih/vim-go'
-    let g:go_disable_autoinstall = 1
+    let g:ale_go_gometalinter_options = '--fast'
+
+    " let g:go_disable_autoinstall = 1
     let g:go_fmt_command = "gofmt"
-    let g:go_metalinter_autosave = 1
-    let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+    " let g:go_metalinter_autosave = 1
+    " let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 
     au FileType go nmap <leader>gr <Plug>(go-run)
     au FileType go nmap <leader>gb <Plug>(go-build)
@@ -350,6 +352,7 @@ let g:jsx_ext_required = 0
 set autoread
 let g:ale_linters = {
 \   'javascript': ['standard'],
+\   'go': ['gometalinter', 'gofmt', 'goimports', 'gotype', 'go vet', 'staticcheck', 'go build', 'gosimple']
 \}
 
 endif
