@@ -174,10 +174,10 @@ if count(g:vimified_packages, 'snippets')
     let g:airline#extensions#ycm#enabled = 1
 
     Plugin 'SirVer/ultisnips'
+    let g:UltiSnipsUsePythonVersion = 3
     let g:UltiSnipsExpandTrigger="<C-T>"
     let g:UltiSnipsJumpForwardTrigger="<Tab>"
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-    let g:UltiSnipsUsePythonVersion=2
 
     Plugin 'gypsydave5/vim-snippets'
 endif
@@ -324,8 +324,10 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-ragtag'
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.pug set filetype=pug
 
 au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+au BufNewFile,BufReadPost *.pug setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 endif
