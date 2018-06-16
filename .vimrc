@@ -118,19 +118,29 @@ endif
 
 " _. rust {{{
 Plugin 'rust-lang/rust.vim'
+Plugin 'timonv/vim-cargo'
 Plugin 'cespare/vim-toml'
+Plugin 'rhysd/rust-doc.vim'
 
 au BufRead,BufNewFile *.rs set filetype=rust
 au BufRead,BufNewFile *.toml set filetype=toml
 let g:syntastic_quiet_messages = {"regex": 'is unstable and should only be used on the nightly compiler, but it is currently accepted for backwards compatibility; this will soon change, see issue #31847 for more details'}
 
-let g:rustfmt_autosave = 0
-au FileType rust nmap <leader>rx :RustExpand<CR>
+let g:rustfmt_autosave = 1
+let g:rust_doc#downloaded_rust_doc_dir = '~/.rustup/toolchains/nightly-x86_64-apple-darwin/'
+let g:rustfmt_command = 'rustfmt --force'
+let g:cargo_command = "cargo {cmd}"
 au FileType rust nmap <leader>rp :RustPlay<CR>
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 let g:cargo_command = "!cargo {cmd}"
 au FileType rust nmap <leader>cr :CargoRun<CR>
 au FileType rust nmap <leader>cb :CargoBuild<CR>
+au FileType rust nmap <leader>cc :CargoCheck<CR>
 au FileType rust nmap <leader>ct :CargoTest<CR>
 au FileType rust nmap <leader>ci :CargoTest -- --ignored<CR>
 au FileType rust nmap <leader>cm :CargoBench<CR>
@@ -178,6 +188,7 @@ if count(g:vimified_packages, 'snippets')
     let g:UltiSnipsExpandTrigger="<C-T>"
     let g:UltiSnipsJumpForwardTrigger="<Tab>"
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+    let g:UltiSnipsUsePythonVersion=3
 
     Plugin 'gypsydave5/vim-snippets'
 endif
@@ -213,10 +224,6 @@ nmap <leader>t :TagbarToggle<CR>
 
 Plugin 'gregsexton/gitv'
 Plugin 'joonty/vdebug.git'
-
-Plugin 'scrooloose/nerdcommenter'
-nmap <leader># :call NERDComment(0, "invert")<cr>
-vmap <leader># :call NERDComment(0, "invert")<cr>
 
 Plugin 'tpope/vim-commentary'
 
@@ -276,6 +283,7 @@ if count(g:vimified_packages, 'go')
     au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
     au FileType go nmap <Leader>gi <Plug>(go-info)
+    au FileType go nmap <Leader>gm <Plug>(go-imports)
 
     au FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
 
@@ -351,12 +359,15 @@ Plugin 'leafgarland/typescript-vim'
 
 let g:jsx_ext_required = 0
 
+autocmd BufWrite *.*js ALEFix
+autocmd FileType javascript.jsx set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
 set autoread
 let g:ale_linters = {
 \   'javascript': ['standard'],
 \   'go': ['gometalinter', 'gofmt', 'goimports', 'gotype', 'go vet', 'staticcheck', 'go build', 'gosimple']
+\   'rust': ['rls'],
 \}
-
 endif
 " }}}
 
@@ -547,10 +558,10 @@ set matchtime=2
 
 " White characters {{{
 set autoindent
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 set textwidth=80
-set shiftwidth=4
+set shiftwidth=2
 set wrap
 set expandtab
 set formatoptions=qrn1
