@@ -2,125 +2,141 @@ set nocompatible
 filetype off
 set mouse=a
 
-" VUNDLE {{{
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-" }}}
 
-" Utils {{{
-source ~/.vim/functions/util.vim
-" }}}
-
-" Load external configuration before anything else {{{
-if filereadable(expand("~/.vim/before.vimrc"))
-source ~/.vim/before.vimrc
-endif
-" }}}
-
-let mapleader = ","
-inoremap jj <Esc>
-
-" Local vimrc configuration {{{
-let s:localrc = expand("~/.vim/local.vimrc")
-if filereadable(s:localrc)
-exec ':so ' . s:localrc
-endif
-" }}}
-
-" PACKAGE LIST {{{
-if !exists('g:vimified_packages')
-let g:vimified_packages = ['general', 'go', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color', 'db', 'scala', 'clang', 'snippets', 'java']
-endif
-" }}}
-
-" PACKAGES {{{
-
-" Install user-supplied Plugins {{{
-let s:extrarc = expand($HOME . '/.vim/extra.vimrc')
-if filereadable(s:extrarc)
-exec ':so ' . s:extrarc
-endif
-" }}}
-
-" _. General {{{
-if count(g:vimified_packages, 'general')
+Plugin 'aklt/plantuml-syntax'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'sjl/badwolf'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-sexp'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-classpath'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'alfredodeza/jacinto.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'wavded/vim-stylus'
+Plugin 'lunaru/vim-less'
+Plugin 'tpope/vim-haml'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'tpope/vim-ragtag'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'godoctor/godoctor.vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'fatih/vim-go'
+Plugin 'vim-scripts/SQLComplete.vim'
+Plugin 'vim-scripts/dbext.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'gregsexton/gitv'
+Plugin 'joonty/vdebug.git'
+Plugin 'tpope/vim-commentary'
+Plugin 'sjl/splice.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'w0rp/ale'
+Plugin 'vim-scripts/Reindent'
+Plugin 'Yggdroot/indentLine'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tmux-plugins/vim-tmux'
+Plugin 'benmills/vimux'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'gypsydave5/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'tfnico/vim-gradle'
+Plugin 'vim-scripts/groovy.vim'
+Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'udalov/kotlin-vim'
 Plugin 'editorconfig/editorconfig-vim'
-let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
-
-Plugin 'rking/ag.vim'
-nnoremap <leader>a :Ag -i<space>
-
 Plugin 'jremmen/vim-ripgrep'
-nnoremap <leader>r :Rg -i<space>
-
 Plugin 'matthias-guenther/hammer.vim'
-nmap <leader>p :Hammer<cr>
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'godlygeek/tabular'
-
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
 Plugin 'vito-c/jq.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-unimpaired'
-
+Plugin 'edkolev/promptline.vim'
+Plugin 'bling/vim-airline'
+Plugin 'roman/golden-ratio'
 Plugin 'mattn/webapi-vim'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'kana/vim-textobj-user'
+Plugin 'vim-scripts/YankRing.vim'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'Spaceghost/vim-matchit'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/scratch.vim'
+Plugin 'troydm/easybuffer.vim'
+Plugin 'tpope/vim-cucumber'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'diepm/vim-rest-console'
+Plugin 'jpalardy/vim-slime'
+Plugin 'rust-lang/rust.vim'
+Plugin 'timonv/vim-cargo'
+Plugin 'cespare/vim-toml'
+Plugin 'rhysd/rust-doc.vim'
+Plugin 'klen/python-mode'
+Plugin 'python.vim'
+Plugin 'python_match.vim'
+Plugin 'pythoncomplete'
+
+let mapleader = ","
+
+let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
+
+nnoremap <leader>a :Ag -i<space>
+nnoremap <leader>r :Rg -i<space>
+
+nmap <leader>p :Hammer<cr>
+
+
 " Disable the scrollbars (NERDTree)
 set guioptions-=r
 set guioptions-=L
 " Keep NERDTree window fixed between multiple toggles
 set winfixwidth
 
-Plugin 'kana/vim-textobj-user'
-Plugin 'vim-scripts/YankRing.vim'
-
 let g:yankring_replace_n_pkey = '<leader>['
 let g:yankring_replace_n_nkey = '<leader>]'
 let g:yankring_history_dir = '~/.vim/tmp/'
 nmap <leader>y :YRShow<cr>
 
-Plugin 'michaeljsmith/vim-indent-object'
 let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
 
-Plugin 'Spaceghost/vim-matchit'
-Plugin 'kien/ctrlp.vim'
 let g:ctrlp_working_path_mode = ''
 
-
-Plugin 'vim-scripts/scratch.vim'
-
-Plugin 'troydm/easybuffer.vim'
 nmap <leader>be :EasyBufferToggle<enter>
 
-" Plugin 't9md/vim-ruby-xmpfilter'
-Plugin 'tpope/vim-cucumber'
-Plugin 'jiangmiao/auto-pairs'
 
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'diepm/vim-rest-console'
-
-endif
 " }}}
 "
 " _. tmux {{{
-if count(g:vimified_packages, 'tmux')
-Plugin 'benmills/vimux'
-Plugin 'jpalardy/vim-slime'
 let g:slime_target = "tmux"
-endif
 " }}}
 "
-
 " _. rust {{{
-Plugin 'rust-lang/rust.vim'
-Plugin 'timonv/vim-cargo'
-Plugin 'cespare/vim-toml'
-Plugin 'rhysd/rust-doc.vim'
 
 au BufRead,BufNewFile *.rs set filetype=rust
 au BufRead,BufNewFile *.toml set filetype=toml
@@ -147,128 +163,67 @@ au FileType rust nmap <leader>cm :CargoBench<CR>
 " }}}
 
 " _. Fancy {{{
-if count(g:vimified_packages, 'fancy')
-Plugin 'edkolev/promptline.vim'
-Plugin 'bling/vim-airline'
-Plugin 'roman/golden-ratio'
 let g:golden_ratio_exclude_nonmodifiable = 1
 "Modified the plugin as per https://github.com/roman/golden-ratio/pull/15
 let g:golden_ratio_filetypes_blacklist = ["nerdtree", "unite", "qf"]
-endif
 " }}}
 
 " _. DB {{{
-if count(g:vimified_packages, 'db')
-Plugin 'vim-scripts/dbext.vim'
 
 let g:dbext_default_SQLSRV_bin = 'tsql'
 let g:dbext_default_SQLSRV_cmd_options = ''
-endif
 " }}}
 
 " _. Java {{{
-if count(g:vimified_packages, 'java')
-Plugin 'tfnico/vim-gradle'
-Plugin 'vim-scripts/groovy.vim'
-Plugin 'artur-shaik/vim-javacomplete2'
-Plugin 'udalov/kotlin-vim'
 
 let g:syntastic_java_javac_config_file_enabled = 1
-endif
 " }}}
 "
 " _. Snippets {{{
-if count(g:vimified_packages, 'snippets')
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'rdnetto/YCM-Generator'
     let g:airline#extensions#ycm#enabled = 1
-
-    Plugin 'SirVer/ultisnips'
     let g:UltiSnipsUsePythonVersion = 3
     let g:UltiSnipsExpandTrigger="<C-T>"
     let g:UltiSnipsJumpForwardTrigger="<Tab>"
     let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
     let g:UltiSnipsUsePythonVersion=3
-
-    Plugin 'gypsydave5/vim-snippets'
-endif
 " }}}
 "
 " _. Indent {{{
-if count(g:vimified_packages, 'indent')
-Plugin 'Yggdroot/indentLine'
 set list lcs=tab:\|\
 let g:indentLine_color_term = 111
 let g:indentLine_color_gui = '#DADADA'
 let g:indentLine_char = 'c'
 let g:indentLine_char = '∙▹¦'
 let g:indentLine_char = '∙'
-endif
 " }}}
 
 " _. OS {{{
-if count(g:vimified_packages, 'os')
-Plugin 'tmux-plugins/vim-tmux'
-Plugin 'benmills/vimux'
 map <Leader>rp :VimuxPromptCommand<CR>
 map <Leader>rl :VimuxRunLastCommand<CR>
 map <LocalLeader>d :call VimuxRunCommand(@v, 0)<CR>
-endif
 " }}}
 
 " _. Coding {{{
-
-if count(g:vimified_packages, 'coding')
-Plugin 'majutsushi/tagbar'
 nmap <leader>t :TagbarToggle<CR>
-
-Plugin 'gregsexton/gitv'
-Plugin 'joonty/vdebug.git'
-
-Plugin 'tpope/vim-commentary'
-
-Plugin 'sjl/splice.vim'
-
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
 nmap <leader>g :Ggrep
 " ,f for global git serach for word under the cursor (with highlight)
 nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
 " same in visual mode
 :vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
 
-Plugin 'w0rp/ale'
-Plugin 'vim-scripts/Reindent'
 
 autocmd FileType gitcommit set tw=68 spell
 autocmd FileType gitcommit setlocal foldmethod=manual
 
-Plugin 'rizzatti/dash.vim'
 :nmap <silent> <leader>d <Plug>DashSearch
-
-Plugin 'vim-scripts/SQLComplete.vim'
-
-endif
 " }}}
 
 " _. Python {{{
-if count(g:vimified_packages, 'python')
-Plugin 'klen/python-mode'
-Plugin 'python.vim'
-Plugin 'python_match.vim'
-Plugin 'pythoncomplete'
-endif
 " }}}
 
 " _. Go {{{
-if count(g:vimified_packages, 'go')
-    Plugin 'fatih/vim-go'
     let g:ale_go_gometalinter_options = '--fast'
-
-    " let g:go_disable_autoinstall = 1
     let g:go_fmt_command = "gofmt"
-    " let g:go_metalinter_autosave = 1
-    " let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 
     au FileType go nmap <leader>gr <Plug>(go-run)
     au FileType go nmap <leader>gb <Plug>(go-build)
@@ -287,49 +242,33 @@ if count(g:vimified_packages, 'go')
 
     au FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
 
-    Plugin 'godoctor/godoctor.vim'
     if exists("g:did_load_filetypes")
         filetype off
         filetype plugin indent off
     endif
     set rtp+=~/.vim/godoctor.vim
     filetype plugin indent on
-endif
 " }}}
 
 " _. Ruby {{{
-if count(g:vimified_packages, 'ruby')
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'thoughtbot/vim-rspec'
 
 autocmd FileType ruby,eruby,yaml set tw=80 ai sw=2 sts=2 et
 autocmd FileType ruby,eruby,yaml setlocal foldmethod=manual
 autocmd FileType ruby,eruby,yaml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-endif
 " }}}
 
 " _. Clang {{{
 autocmd FileType make set noexpandtab
-if count(g:vimified_packages, 'clang')
     autocmd BufWritePre *.h :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
     autocmd BufWritePre *.c :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
     autocmd BufWritePre *.cpp :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
     autocmd BufWritePre *.cc :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
     let &path.="deps/,"
     au BufNewFile,BufReadPost *.c setl shiftwidth=2 tabstop=2 softtabstop=2 noexpandtab
-endif
 
 " }}}
 
 " _. HTML {{{
-if count(g:vimified_packages, 'html')
-Plugin 'tpope/vim-haml'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'tpope/vim-ragtag'
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.pug set filetype=pug
@@ -338,24 +277,13 @@ au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expan
 au BufNewFile,BufReadPost *.pug setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-endif
 " }}}
 
 " _. CSS {{{
-if count(g:vimified_packages, 'css')
-Plugin 'wavded/vim-stylus'
-Plugin 'lunaru/vim-less'
 nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
-endif
 " }}}
 
 " _. JS {{{
-if count(g:vimified_packages, 'js')
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'alfredodeza/jacinto.vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
-Plugin 'leafgarland/typescript-vim'
 
 let g:jsx_ext_required = 0
 
@@ -365,29 +293,16 @@ autocmd FileType javascript.jsx set tabstop=2 shiftwidth=2 softtabstop=2 expandt
 set autoread
 let g:ale_linters = {
 \   'javascript': ['standard'],
-\   'go': ['gometalinter', 'gofmt', 'goimports', 'gotype', 'go vet', 'staticcheck', 'go build', 'gosimple']
+\   'go': ['gometalinter', 'gofmt', 'goimports', 'gotype', 'go vet', 'staticcheck', 'go build', 'gosimple'],
 \   'rust': ['rls'],
 \}
-endif
 " }}}
 
 " _. Clojure {{{
-if count(g:vimified_packages, 'clojure')
-Plugin 'guns/vim-clojure-static'
-Plugin 'guns/vim-sexp'
 let g:sexp_filetypes = 'lisp,clojure'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-Plugin 'tpope/vim-leiningen'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-classpath'
-endif
 " }}}
 
 " _. Haskell {{{
-if count(g:vimified_packages, 'haskell')
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
 
 au FileType haskell setlocal formatprg=hindent\ --style\ johan-tibell
 autocmd BufWritePre *.hs :%!hindent --style johan-tibell
@@ -396,40 +311,22 @@ let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
-endif
 " }}}
 
 " _. Elixir {{{
-if count(g:vimified_packages, 'elixir')
-Plugin 'elixir-lang/vim-elixir'
-endif
 " }}}
 
 " _. Color {{{
-if count(g:vimified_packages, 'color')
-Plugin 'sjl/badwolf'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'w0ng/vim-hybrid'
 
 " During installation the molokai colorscheme might not be avalable
 if filereadable(globpath(&rtp, 'colors/molokai.vim'))
-colorscheme molokai
+  colorscheme molokai
 else
-colorscheme default
-endif
-else
-colorscheme default
+  colorscheme default
 endif
 " }}}
 "
 " _. Scala {{{
-if count(g:vimified_packages, 'scala')
-"Plugin 'ensime/ensime-vim'
-Plugin 'derekwyatt/vim-scala'
-"au Filetype scala autocmd BufWritalePost *.scala :EnTypeCheck
-"au Filetype scala nnoremap <Leader>t :EnTypeCheck<CR>
-endif
 " }}}
 
 " }}}
@@ -727,7 +624,6 @@ hi! link ShowMarksHLm LineNr
 " }}}
 
 " PlantUML {{{
-Plugin 'aklt/plantuml-syntax'
 " }}}
 
 " _ Vim {{{
