@@ -4,96 +4,80 @@ set mouse=a
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'gregsexton/gitv'
-
+Plugin 'Yggdroot/indentLine'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'aklt/plantuml-syntax'
-Plugin 'sjl/badwolf'
-Plugin 'w0ng/vim-hybrid'
+Plugin 'bling/vim-airline'
+Plugin 'cespare/vim-toml'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'edkolev/promptline.vim'
+Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
+Plugin 'godlygeek/tabular'
+Plugin 'godoctor/godoctor.vim'
+Plugin 'gregsexton/gitv'
 Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-Plugin 'tpope/vim-leiningen'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-classpath'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'tpope/vim-ragtag'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'godoctor/godoctor.vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'fatih/vim-go'
-Plugin 'vim-scripts/SQLComplete.vim'
-Plugin 'vim-scripts/dbext.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'joonty/vdebug.git'
-Plugin 'tpope/vim-commentary'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'w0rp/ale'
-Plugin 'vim-scripts/Reindent'
-Plugin 'Yggdroot/indentLine'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
 Plugin 'gypsydave5/vim-snippets'
-Plugin 'SirVer/ultisnips'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'jremmen/vim-ripgrep'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-speeddating'
-Plugin 'maxbrunsfeld/vim-yankstack'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-surround'
-Plugin 'elzr/vim-json'
-Plugin 'vito-c/jq.vim'
-Plugin 'edkolev/promptline.vim'
-Plugin 'bling/vim-airline'
-Plugin 'roman/golden-ratio'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'kana/vim-textobj-user'
-Plugin 'vim-scripts/YankRing.vim'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'Spaceghost/vim-matchit'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-scripts/scratch.vim'
-Plugin 'troydm/easybuffer.vim'
-Plugin 'tpope/vim-cucumber'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'diepm/vim-rest-console'
+Plugin 'joonty/vdebug.git'
 Plugin 'jpalardy/vim-slime'
-Plugin 'rust-lang/rust.vim'
-Plugin 'timonv/vim-cargo'
-Plugin 'cespare/vim-toml'
+Plugin 'jremmen/vim-ripgrep'
+Plugin 'kana/vim-textobj-user'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'mxw/vim-jsx'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'pangloss/vim-javascript'
+Plugin 'rdnetto/YCM-Generator'
 Plugin 'rhysd/rust-doc.vim'
-Plugin 'klen/python-mode'
-Plugin 'python.vim'
-Plugin 'python_match.vim'
-Plugin 'pythoncomplete'
+Plugin 'rizzatti/dash.vim'
+Plugin 'roman/golden-ratio'
+Plugin 'rust-lang/rust.vim'
+Plugin 'sjl/badwolf'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'timonv/vim-cargo'
+Plugin 'tpope/vim-classpath'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
+Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/Reindent'
+Plugin 'vim-scripts/SQLComplete.vim'
+Plugin 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/dbext.vim'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'vito-c/jq.vim'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'w0rp/ale'
 
 let mapleader = ","
 
+let g:ale_linters = {}
+
 let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
 
-nnoremap <leader>a :Ag -i<space>
 nnoremap <leader>r :Rg -i<space>
-
-nmap <leader>p :Hammer<cr>
-
-
-" Disable the scrollbars (NERDTree)
-set guioptions-=r
-set guioptions-=L
-" Keep NERDTree window fixed between multiple toggles
-set winfixwidth
 
 let g:yankring_replace_n_pkey = '<leader>['
 let g:yankring_replace_n_nkey = '<leader>]'
@@ -101,70 +85,15 @@ let g:yankring_history_dir = '~/.vim/tmp/'
 nmap <leader>y :YRShow<cr>
 
 let g:indentobject_meaningful_indentation = ["haml", "sass", "python", "yaml", "markdown"]
-
-let g:ctrlp_working_path_mode = ''
-
-nmap <leader>be :EasyBufferToggle<enter>
-
-
-" }}}
-"
-" _. tmux {{{
 let g:slime_target = "tmux"
-" }}}
 "
-" _. rust {{{
-
-au BufRead,BufNewFile *.rs set filetype=rust
-au BufRead,BufNewFile *.toml set filetype=toml
-let g:syntastic_quiet_messages = {"regex": 'is unstable and should only be used on the nightly compiler, but it is currently accepted for backwards compatibility; this will soon change, see issue #31847 for more details'}
-
-let g:rustfmt_autosave = 1
-let g:rust_doc#downloaded_rust_doc_dir = '~/.rustup/toolchains/nightly-x86_64-apple-darwin/'
-let g:rustfmt_command = 'rustfmt --force'
-let g:cargo_command = "cargo {cmd}"
-au FileType rust nmap <leader>rp :RustPlay<CR>
-
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
-let g:cargo_command = "!cargo {cmd}"
-au FileType rust nmap <leader>cr :CargoRun<CR>
-au FileType rust nmap <leader>cb :CargoBuild<CR>
-au FileType rust nmap <leader>cc :CargoCheck<CR>
-au FileType rust nmap <leader>ct :CargoTest<CR>
-au FileType rust nmap <leader>ci :CargoTest -- --ignored<CR>
-au FileType rust nmap <leader>cm :CargoBench<CR>
-" }}}
-
-" _. Fancy {{{
 let g:golden_ratio_exclude_nonmodifiable = 1
-"Modified the plugin as per https://github.com/roman/golden-ratio/pull/15
+let g:golden_ratio_autocommand = 0
 let g:golden_ratio_filetypes_blacklist = ["nerdtree", "unite", "qf"]
-" }}}
-
-" _. DB {{{
 
 let g:dbext_default_SQLSRV_bin = 'tsql'
 let g:dbext_default_SQLSRV_cmd_options = ''
-" }}}
 
-" _. Java {{{
-
-let g:syntastic_java_javac_config_file_enabled = 1
-" }}}
-"
-" _. Snippets {{{
-    let g:airline#extensions#ycm#enabled = 1
-    let g:UltiSnipsUsePythonVersion = 3
-    let g:UltiSnipsExpandTrigger="<C-T>"
-    let g:UltiSnipsJumpForwardTrigger="<Tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-    let g:UltiSnipsUsePythonVersion=3
-" }}}
-"
 " _. Indent {{{
 set list lcs=tab:\|\
 let g:indentLine_color_term = 111
@@ -174,78 +103,12 @@ let g:indentLine_char = '∙▹¦'
 let g:indentLine_char = '∙'
 " }}}
 
-" _. OS {{{
-map <Leader>rp :VimuxPromptCommand<CR>
-map <Leader>rl :VimuxRunLastCommand<CR>
-map <LocalLeader>d :call VimuxRunCommand(@v, 0)<CR>
-" }}}
-
-" _. Coding {{{
 nmap <leader>t :TagbarToggle<CR>
-nmap <leader>g :Ggrep
-" ,f for global git serach for word under the cursor (with highlight)
-nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
-" same in visual mode
-:vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
-
-
-autocmd FileType gitcommit set tw=68 spell
-autocmd FileType gitcommit setlocal foldmethod=manual
-
 :nmap <silent> <leader>d <Plug>DashSearch
-" }}}
-
-" _. Python {{{
-" }}}
-
-" _. Go {{{
-    let g:ale_go_gometalinter_options = '--fast'
-    let g:go_fmt_command = "gofmt"
-
-    au FileType go nmap <leader>gr <Plug>(go-run)
-    au FileType go nmap <leader>gb <Plug>(go-build)
-    au FileType go nmap <leader>gt <Plug>(go-test)
-    au FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
-    au FileType go nmap <leader>gv <Plug>(go-vet)
-    au FileType go nmap <leader>gd <Plug>(go-doc-vertical)
-    au FileType go nmap <leader>gD <Plug>(go-doc-browser)
-
-    au FileType go nmap <Leader>ds <Plug>(go-def-split)
-    au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-    au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-
-    au FileType go nmap <Leader>gi <Plug>(go-info)
-    au FileType go nmap <Leader>gm <Plug>(go-imports)
-
-    au FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
-
-    if exists("g:did_load_filetypes")
-        filetype off
-        filetype plugin indent off
-    endif
-    set rtp+=~/.vim/godoctor.vim
-    filetype plugin indent on
-" }}}
-
-" _. Ruby {{{
 
 autocmd FileType ruby,eruby,yaml set tw=80 ai sw=2 sts=2 et
 autocmd FileType ruby,eruby,yaml setlocal foldmethod=manual
 autocmd FileType ruby,eruby,yaml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-" }}}
-
-" _. Clang {{{
-autocmd FileType make set noexpandtab
-    autocmd BufWritePre *.h :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
-    autocmd BufWritePre *.c :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
-    autocmd BufWritePre *.cpp :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
-    autocmd BufWritePre *.cc :%pyf /usr/local/Cellar/clang-format/2017-03-17/share/clang/clang-format.py
-    let &path.="deps/,"
-    au BufNewFile,BufReadPost *.c setl shiftwidth=2 tabstop=2 softtabstop=2 noexpandtab
-
-" }}}
-
-" _. HTML {{{
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.pug set filetype=pug
@@ -254,62 +117,12 @@ au BufNewFile,BufReadPost *.jade setl shiftwidth=2 tabstop=2 softtabstop=2 expan
 au BufNewFile,BufReadPost *.pug setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-" }}}
 
-" _. CSS {{{
 nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
-" }}}
-
-" _. JS {{{
-
-let g:jsx_ext_required = 0
-
-autocmd BufWrite *.*js ALEFix
-autocmd FileType javascript.jsx set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-
-set autoread
-let g:ale_linters = {
-\   'javascript': ['standard'],
-\   'go': ['gometalinter', 'gofmt', 'goimports', 'gotype', 'go vet', 'staticcheck', 'go build', 'gosimple'],
-\   'rust': ['rls'],
-\}
-" }}}
-
-" _. Clojure {{{
 let g:sexp_filetypes = 'lisp,clojure'
-" }}}
 
-" _. Haskell {{{
-
-au FileType haskell setlocal formatprg=hindent\ --style\ johan-tibell
-autocmd BufWritePre *.hs :%!hindent --style johan-tibell
-
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
-" }}}
-
-" _. Elixir {{{
-" }}}
-
-" _. Color {{{
-
-" During installation the molokai colorscheme might not be avalable
-if filereadable(globpath(&rtp, 'colors/molokai.vim'))
-  colorscheme molokai
-else
-  colorscheme default
-endif
-" }}}
-"
-" _. Scala {{{
-" }}}
-
-" }}}
-
-" General {{{
 call vundle#end()
+
 call yankstack#setup()
 
 filetype plugin indent on
@@ -336,7 +149,7 @@ au FocusGained * redraw!
 " Yank from current cursor position to end of line
 map Y y$
 
-" clear highlight after search
+: clear highlight after search
 noremap <silent><Leader>/ :nohls<CR>
 
 nmap <silent> <leader>hh :set invhlsearch<CR>
@@ -653,6 +466,6 @@ if filereadable(expand("~/.vim/after.vimrc"))
 source ~/.vim/after.vimrc
 endif
 
-syntax enable
-" }}}
-"
+syntax on
+
+runtime! init/**.vim
