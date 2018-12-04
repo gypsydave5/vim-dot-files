@@ -12,13 +12,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'aklt/plantuml-syntax'
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
 Plugin 'cespare/vim-toml'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'edkolev/promptline.vim'
-Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'godoctor/godoctor.vim'
@@ -26,11 +26,13 @@ Plugin 'gregsexton/gitv'
 Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-sexp'
 Plugin 'gypsydave5/vim-snippets'
+Plugin 'robertmeta/nofrils'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'joonty/vdebug.git'
 Plugin 'jpalardy/vim-slime'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'kana/vim-textobj-user'
+Plugin 'kovisoft/slimv'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'maxbrunsfeld/vim-yankstack'
@@ -44,6 +46,7 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'roman/golden-ratio'
 Plugin 'rust-lang/rust.vim'
 Plugin 'sjl/badwolf'
+Plugin 'wolverian/minimal'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'timonv/vim-cargo'
 Plugin 'tpope/vim-classpath'
@@ -53,10 +56,10 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-leiningen'
 Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
@@ -70,6 +73,7 @@ Plugin 'vim-scripts/matchit.zip'
 Plugin 'vito-c/jq.vim'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'w0rp/ale'
+
 
 let mapleader = ","
 
@@ -102,7 +106,6 @@ let g:indentLine_char = 'c'
 let g:indentLine_char = '∙▹¦'
 let g:indentLine_char = '∙'
 " }}}
-
 nmap <leader>t :TagbarToggle<CR>
 :nmap <silent> <leader>d <Plug>DashSearch
 
@@ -149,7 +152,7 @@ au FocusGained * redraw!
 " Yank from current cursor position to end of line
 map Y y$
 
-: clear highlight after search
+" clear highlight after search
 noremap <silent><Leader>/ :nohls<CR>
 
 nmap <silent> <leader>hh :set invhlsearch<CR>
@@ -411,9 +414,6 @@ hi! link ShowMarksHLu LineNr
 hi! link ShowMarksHLo LineNr
 hi! link ShowMarksHLm LineNr
 
-" }}}
-
-" PlantUML {{{
 " }}}
 
 " _ Vim {{{

@@ -33,16 +33,7 @@ endif
 " }}}
 
 "colorschemes for term/gui {{{
-colorscheme badwolf
+colorscheme nofrils-light
 "}}}
-"
-"promptline settings {{{
- let g:promptline_theme = 'airline'
- let g:promptline_preset = {
-         \'a' : [ promptline#slices#battery(), promptline#slices#host({ 'only_if_ssh': 1 }) ],
-         \'b' : [ promptline#slices#cwd({ 'dir_limit': 1}) ],
-         \'c' : [ promptline#slices#vcs_branch() ],
-         \'x' : [ promptline#slices#git_status()],
-         \'y' : [ promptline#slices#jobs() ],
-         \'warn' : [ promptline#slices#last_exit_code() ]}
-"}}}
+
+
